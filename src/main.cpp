@@ -31,4 +31,5 @@ int main(){
     image.Export("copy.bmp");
 
     return 0;
-}
+    
+}// ekisde, no se hizo el commid unu 
