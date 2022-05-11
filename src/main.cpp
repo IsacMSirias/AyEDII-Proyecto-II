@@ -8,7 +8,7 @@ int main() {
     img.generate(400,400);
 	
     img.Read("in.bmp");
-	img.rotate180();
+	// img.reflectX();
 	img.Export("out.bmp");
 
 	img.clear();
