@@ -12,7 +12,6 @@
 #include <QtCore/QVariant>
 #include <QtGui/QAction>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
@@ -36,7 +35,6 @@ public:
     QAction *actionZoomIn;
     QAction *actionZoomOut;
     QWidget *centralwidget;
-    QLabel *canvas;
     QMenuBar *menubar;
     QMenu *menuFile;
     QMenu *menuEdit;
@@ -99,9 +97,6 @@ public:
         actionZoomOut->setObjectName(QString::fromUtf8("actionZoomOut"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
-        canvas = new QLabel(centralwidget);
-        canvas->setObjectName(QString::fromUtf8("canvas"));
-        canvas->setGeometry(QRect(-30, 0, 791, 551));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -118,6 +113,7 @@ public:
         MainWindow->setStatusBar(statusbar);
         toolBar = new QToolBar(MainWindow);
         toolBar->setObjectName(QString::fromUtf8("toolBar"));
+        toolBar->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
         MainWindow->addToolBar(Qt::TopToolBarArea, toolBar);
         toolBar_2 = new QToolBar(MainWindow);
         toolBar_2->setObjectName(QString::fromUtf8("toolBar_2"));
@@ -169,7 +165,6 @@ public:
         actionFill->setText(QCoreApplication::translate("MainWindow", "Fill", nullptr));
         actionZoomIn->setText(QCoreApplication::translate("MainWindow", "ZoomIn", nullptr));
         actionZoomOut->setText(QCoreApplication::translate("MainWindow", "ZoomOut", nullptr));
-        canvas->setText(QString());
         menuFile->setTitle(QCoreApplication::translate("MainWindow", "File", nullptr));
         menuEdit->setTitle(QCoreApplication::translate("MainWindow", "Edit", nullptr));
         menuView->setTitle(QCoreApplication::translate("MainWindow", "View", nullptr));

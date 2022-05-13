@@ -15,12 +15,27 @@ MainWindow::~MainWindow()
 }
 
 
+void MainWindow::paintEvent(QPaintEvent *event)
+{
+    QPainter painter(this);
+    QPen pen;
+    QColor color;
+
+    painter.setPen(pen);
+
+    for (int i = 0; i < 100; ++i) {
+        for (int j = 0; j < 100; ++j) {
+            color.setRgb(1, 1, 1);
+            pen.setColor(color);
+            painter.drawPoint(i,j);
+        }
+    }
+}
+
+
 void MainWindow::on_actionOpen_triggered()
 {
-    Image img;
-    img.generate(400,400);
-    img.Read("in.bmp");
-    //ui->canvas->pixmap().loadFromData(); //hay que ver qué ponemos acá
+    update();
 }
 
 
