@@ -13,6 +13,16 @@ rgbColor::rgbColor(float r, float g, float b)
 }
 
 
+rgbMatrix::rgbMatrix(unsigned char* pixels_inMatrix, int height, int width){
+
+    m_height = height;
+    m_width = width;
+    this->createMatrix();
+    this->createMatrix_fromDiscImage(pixels_inMatrix);
+    cout<<"Se escribio una nueva matriz a partir de los datos leidos"<<endl;
+
+
+}
 rgbMatrix::rgbMatrix(int width, int height){
 
     m_height = height;
@@ -20,6 +30,7 @@ rgbMatrix::rgbMatrix(int width, int height){
     this->createMatrix();
 
 }
+
 
 void rgbMatrix::createMatrix(){
 
@@ -30,12 +41,12 @@ void rgbMatrix::createMatrix(){
     }
 }
 
-int rgbMatrix::getHeight(){
+int rgbMatrix::get_Height(){
 
     return m_height;
 }
 
-int rgbMatrix::getWidth(){
+int rgbMatrix::get_Width(){
 
     return m_width;
 }
@@ -61,6 +72,20 @@ void rgbMatrix::CreateRgbArray(){
             c = c + 3;
         }
         c += paddingBytes;
+    }
+}
+
+void rgbMatrix::createMatrix_fromDiscImage(unsigned char* pixels_inMatrix) {
+    int m = 0;
+    for (int x = m_height - 1; x >= 0; x--) {
+        for (int y = 0; y < m_width; y++)
+        {
+            float r = pixels_inMatrix[m];
+            float g = pixels_inMatrix[m + 1];
+            float b = pixels_inMatrix[m + 2];
+            setColor(rgbColor(r,g,b), x, y);
+            m = m + 3;
+        }
     }
 }
 
@@ -102,62 +127,6 @@ void rgbMatrix::setColor(const rgbColor &color, int x, int y){
     matrix[x][y].b = color.b;
    
 }
-
-void rgbMatrix::read(const char* file){
-
-    std::ifstream f;
-    f.open(file, std::ios::in | std::ios::binary);
-
-    if(!f.is_open()){
-        std::cout<<"File could not be open\n";
-        return;
-    }
-
-    const int fileHeaderSize = 14;
-    const int informationHeaderSize = 40;
-
-    unsigned char fileHeader[fileHeaderSize];
-    f.read(reinterpret_cast<char*>(fileHeader),fileHeaderSize);
-
-    if(fileHeader[0] != 'B' || fileHeader[1] != 'M')
-    {
-        std::cout<< "The specified path is not a bitmap image"<< std::endl;
-        f.close();
-        return;
-    }
-
-    unsigned char informationHeader[informationHeaderSize];
-    f.read(reinterpret_cast<char*>(informationHeader),informationHeaderSize);
-
-    int fileSize = fileHeader[2] + (fileHeader[3] << 8) + (fileHeader[4] << 16) +(fileHeader[5] << 24);
-
-    m_width = informationHeader[4] + (informationHeader[5] << 8) + (informationHeader[6] << 16) + (informationHeader[7] << 24);
-    m_height = informationHeader[8] + (informationHeader[9] << 8) + (informationHeader[10] << 16) + (informationHeader[11] << 24);
-
-    matrix[m_width][m_height];
-
-    const int paddingAmount = ((4 - (m_width * 3) % 4) % 4);
-
-
-    for (int y = 0; y < m_height; y++)
-    {
-        for (int x = 0 ; x < m_width ; x++)
-        {
-            unsigned char color[3]; 
-            f.read(reinterpret_cast<char*>(color),3);
-            matrix[x][y].r = static_cast<float>(color[2])/255.0f;
-            matrix[x][y].g = static_cast<float>(color[1])/255.0f;
-            matrix[x][y].b = static_cast<float>(color[0])/255.0f;
-
-        }
-        f.ignore(paddingAmount);
-    }
-
-    f.close();
-    std::cout << "File read "<< std::endl;
-
-}
-
 
 void rgbMatrix::clearMatrix()
 {

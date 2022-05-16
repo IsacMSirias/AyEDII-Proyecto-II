@@ -29,9 +29,11 @@ private:
 
 public:
     rgbMatrix(int width, int height);
+    rgbMatrix( unsigned char* pixels_inMatrix,  int height, int width);
     void createMatrix();
-    int getHeight();
-    int getWidth();
+    void createMatrix_fromDiscImage(unsigned char* pixels_inMatrix);
+    int get_Height();
+    int get_Width();
 
     void clearMatrix();
     rgbColor getColor(int x, int y);
@@ -43,10 +45,6 @@ public:
     void reflectXY();
     void rotate90CW();
     void rotate180();
-
-    
-    void read (const char* path);
-    
     
     void CreateRgbArray();
     unsigned char* get_rgbArray();
