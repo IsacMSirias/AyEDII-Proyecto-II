@@ -14,7 +14,6 @@ rgbColor::rgbColor(float r, float g, float b)
 
 
 rgbMatrix::rgbMatrix(unsigned char* pixels_inMatrix, int height, int width){
-
     m_height = height;
     m_width = width;
     this->createMatrix();
@@ -24,13 +23,11 @@ rgbMatrix::rgbMatrix(unsigned char* pixels_inMatrix, int height, int width){
 
 }
 rgbMatrix::rgbMatrix(int width, int height){
-
     m_height = height;
     m_width = width;
     this->createMatrix();
 
 }
-
 
 void rgbMatrix::createMatrix(){
 

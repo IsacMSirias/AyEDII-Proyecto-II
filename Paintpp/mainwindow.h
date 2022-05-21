@@ -31,6 +31,8 @@ private slots:
 
     void on_actionZoomOut_triggered();
 
+    void on_actionRotate_triggered();
+
 protected:
     void mousePressEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;

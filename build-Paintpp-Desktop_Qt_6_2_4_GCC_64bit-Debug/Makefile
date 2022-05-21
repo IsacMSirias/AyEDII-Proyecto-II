@@ -892,18 +892,20 @@ compiler_rcc_clean:
 qrc_images.cpp: ../Paintpp/images.qrc \
 		../../../Qt/6.2.4/gcc_64/libexec/rcc \
 		../Paintpp/images/redo.png \
+		../Paintpp/images/edit-alt.png \
+		../Paintpp/images/lapiz.png \
+		../Paintpp/images/expandir.png \
+		../Paintpp/images/add-document.png \
 		../Paintpp/images/acercarse.png \
 		../Paintpp/images/undo.png \
 		../Paintpp/images/search.png \
 		../Paintpp/images/fill.png \
 		../Paintpp/images/disminuir-el-zoom.png \
 		../Paintpp/images/disk.png \
-		../Paintpp/images/edit-alt.png \
-		../Paintpp/images/lapiz.png \
 		../Paintpp/images/feather.png \
 		../Paintpp/images/pencil.png \
-		../Paintpp/images/expandir.png \
-		../Paintpp/images/add-document.png \
+		../Paintpp/images/escoba.png \
+		../Paintpp/images/rotate.png \
 		../Paintpp/images/varita-magica.png \
 		../Paintpp/images/eye-dropper.png
 	/home/danielcob/Qt/6.2.4/gcc_64/libexec/rcc -name images ../Paintpp/images.qrc -o qrc_images.cpp

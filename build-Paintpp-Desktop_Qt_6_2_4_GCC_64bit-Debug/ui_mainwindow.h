@@ -37,6 +37,7 @@ public:
     QAction *actionmagicWand;
     QAction *actionEraser;
     QAction *actionSelect;
+    QAction *actionRotate;
     QWidget *centralwidget;
     QMenuBar *menubar;
     QMenu *menuFile;
@@ -87,6 +88,7 @@ public:
         actionColorPicker = new QAction(MainWindow);
         actionColorPicker->setObjectName(QString::fromUtf8("actionColorPicker"));
         actionColorPicker->setCheckable(true);
+        actionColorPicker->setChecked(false);
         QIcon icon6;
         icon6.addFile(QString::fromUtf8(":/images/eye-dropper.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionColorPicker->setIcon(icon6);
@@ -124,6 +126,11 @@ public:
         QIcon icon12;
         icon12.addFile(QString::fromUtf8(":/images/expandir.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionSelect->setIcon(icon12);
+        actionRotate = new QAction(MainWindow);
+        actionRotate->setObjectName(QString::fromUtf8("actionRotate"));
+        QIcon icon13;
+        icon13.addFile(QString::fromUtf8(":/images/rotate.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionRotate->setIcon(icon13);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         centralwidget->setMouseTracking(false);
@@ -164,6 +171,7 @@ public:
         toolBar->addSeparator();
         toolBar->addAction(actionZoomIn);
         toolBar->addAction(actionZoomOut);
+        toolBar->addAction(actionRotate);
         toolBar->addSeparator();
         toolBar->addAction(actionUndo);
         toolBar->addAction(actionRedo);
@@ -204,6 +212,7 @@ public:
         actionmagicWand->setText(QCoreApplication::translate("MainWindow", "MagicWand", nullptr));
         actionEraser->setText(QCoreApplication::translate("MainWindow", "Eraser", nullptr));
         actionSelect->setText(QCoreApplication::translate("MainWindow", "Select", nullptr));
+        actionRotate->setText(QCoreApplication::translate("MainWindow", "Rotate", nullptr));
         menuFile->setTitle(QCoreApplication::translate("MainWindow", "File", nullptr));
         menuEdit->setTitle(QCoreApplication::translate("MainWindow", "Edit", nullptr));
         menuView->setTitle(QCoreApplication::translate("MainWindow", "View", nullptr));

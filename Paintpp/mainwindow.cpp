@@ -4,8 +4,8 @@
 #include "BmpImage.h"
 #include "rgbMatrix.h"
 
-rgbMatrix imgMatrix(100, 100);
-rgbColor selectedColor(100, 100, 100);
+rgbMatrix *imgMatrix = new rgbMatrix(200, 200);
+rgbColor *selectedColor = new rgbColor(0, 0, 0);
 rgbColor eraserColor(255, 255, 255);
 int zoomSize = 2;
 
@@ -14,7 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    imgMatrix.whiteCanvas();
+    imgMatrix->whiteCanvas();
 }
 
 MainWindow::~MainWindow()
@@ -29,12 +29,11 @@ void MainWindow::paintEvent(QPaintEvent *event)
     QPen pen;
     QColor color;
 
-    //pen.setCosmetic(false);
     pen.setWidth(zoomSize);
 
-    for (int i = 0; i < imgMatrix.get_Width(); ++i) {
-        for (int j = 0; j < imgMatrix.get_Height(); ++j) {
-            color.setRgb(imgMatrix.getColor(j, i).r, imgMatrix.getColor(j, i).g, imgMatrix.getColor(j, i).b);
+    for (int i = 0; i < imgMatrix->get_Width(); ++i) {
+        for (int j = 0; j < imgMatrix->get_Height(); ++j) {
+            color.setRgb(imgMatrix->getColor(j, i).r, imgMatrix->getColor(j, i).g, imgMatrix->getColor(j, i).b);
             pen.setColor(color);
             painter.setPen(pen);
             painter.drawPoint(i*zoomSize+10,j*zoomSize+ui->menubar->height()+10);
@@ -45,16 +44,16 @@ void MainWindow::paintEvent(QPaintEvent *event)
 
 void MainWindow::on_actionOpen_triggered()
 {
-    imgMatrix.clearMatrix();
     BmpImage readImg("/home/danielcob/Documents/AyEDII-Proyecto-II/Paintpp/in.bmp");
-    imgMatrix.createMatrix_fromDiscImage(readImg.getDataArray());
+    imgMatrix = new rgbMatrix(readImg.getDataArray(), readImg.get_Height(), readImg.get_Width());
     update();
 }
 
 
 void MainWindow::on_actionExport_triggered()
 {
-
+    imgMatrix->CreateRgbArray();
+    BmpImage exportImg("out", imgMatrix->get_Width(), imgMatrix->get_Height(), imgMatrix->get_rgbArray(), imgMatrix->get_rgbArraySize());
 }
 
 
@@ -73,34 +72,36 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
 {
     if (ui->actionPencil->isChecked())
     {
-        imgMatrix.setColor(selectedColor, (event->position().y()-ui->menubar->height()-10)/zoomSize, (event->position().x()-10)/zoomSize);
+        imgMatrix->setColor(*selectedColor, (event->position().y()-ui->menubar->height()-10)/zoomSize, (event->position().x()-10)/zoomSize);
     }
     if (ui->actionEraser->isChecked())
     {
-        imgMatrix.setColor(eraserColor, (event->position().y()-ui->menubar->height()-10)/zoomSize, (event->position().x()-10)/zoomSize);
+        imgMatrix->setColor(eraserColor, (event->position().y()-ui->menubar->height()-10)/zoomSize, (event->position().x()-10)/zoomSize);
+    }
+    if (ui->actionColorPicker->isChecked())
+    {
+        rgbColor color = imgMatrix->getColor((event->position().y()-ui->menubar->height()-10)/zoomSize, (event->position().x()-10)/zoomSize);
+        selectedColor = new rgbColor(color.r, color.g, color.b);
     }
     update();
-    //event->accept();
 }
 
 void MainWindow::mouseMoveEvent(QMouseEvent *event)
 {
     if (ui->actionPencil->isChecked())
     {
-        imgMatrix.setColor(selectedColor, (event->position().y()-ui->menubar->height()-10)/zoomSize, (event->position().x()-10)/zoomSize);
+        imgMatrix->setColor(*selectedColor, (event->position().y()-ui->menubar->height()-10)/zoomSize, (event->position().x()-10)/zoomSize);
     }
     if (ui->actionEraser->isChecked())
     {
-        imgMatrix.setColor(eraserColor, (event->position().y()-ui->menubar->height()-10)/zoomSize, (event->position().x()-10)/zoomSize);
+        imgMatrix->setColor(eraserColor, (event->position().y()-ui->menubar->height()-10)/zoomSize, (event->position().x()-10)/zoomSize);
     }
     update();
-    //event->accept();
 }
 
 void MainWindow::mouseReleaseEvent(QMouseEvent *event)
 {
     //update();
-    //event->accept();
 }
 
 void MainWindow::on_actionZoomIn_triggered()
@@ -117,5 +118,12 @@ void MainWindow::on_actionZoomOut_triggered()
         zoomSize -= 1;
         update();
     }
+}
+
+
+void MainWindow::on_actionRotate_triggered()
+{
+    imgMatrix->rotate90CW();
+    update();
 }
 

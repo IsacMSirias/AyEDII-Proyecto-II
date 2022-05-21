@@ -15,5 +15,7 @@
         <file>images/expandir.png</file>
         <file>images/lapiz.png</file>
         <file>images/varita-magica.png</file>
+        <file>images/escoba.png</file>
+        <file>images/rotate.png</file>
     </qresource>
 </RCC>

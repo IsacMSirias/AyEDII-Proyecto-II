@@ -73,6 +73,7 @@
    <addaction name="separator"/>
    <addaction name="actionZoomIn"/>
    <addaction name="actionZoomOut"/>
+   <addaction name="actionRotate"/>
    <addaction name="separator"/>
    <addaction name="actionUndo"/>
    <addaction name="actionRedo"/>
@@ -156,6 +157,9 @@
    <property name="checkable">
     <bool>true</bool>
    </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="images.qrc">
      <normaloff>:/images/eye-dropper.png</normaloff>:/images/eye-dropper.png</iconset>
@@ -234,6 +238,15 @@
    </property>
    <property name="text">
     <string>Select</string>
+   </property>
+  </action>
+  <action name="actionRotate">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/rotate.png</normaloff>:/images/rotate.png</iconset>
+   </property>
+   <property name="text">
+    <string>Rotate</string>
    </property>
   </action>
  </widget>
