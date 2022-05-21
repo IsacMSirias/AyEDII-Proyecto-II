@@ -27,6 +27,8 @@ int main() {
 
 	BmpImage *fromDisc = new BmpImage("in.bmp");
 
+	unsigned char* imgData = fromDisc->getDataArray();
+
 	rgbMatrix *outImage = new rgbMatrix(fromDisc->getDataArray(), fromDisc->get_Height(), fromDisc->get_Width());
 
 	outImage->rotate180();

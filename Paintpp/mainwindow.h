@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "rgbMatrix.h"
 #include <QMainWindow>
 #include <QPainter>
 
@@ -26,7 +27,14 @@ private slots:
     void on_actionUndo_triggered();
 
     void on_actionRedo_triggered();
+    void on_actionZoomIn_triggered();
 
+    void on_actionZoomOut_triggered();
+
+protected:
+    void mousePressEvent(QMouseEvent *event) override;
+    void mouseMoveEvent(QMouseEvent *event) override;
+    void mouseReleaseEvent(QMouseEvent *event) override;
 private:
     Ui::MainWindow *ui;
 };

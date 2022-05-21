@@ -13,7 +13,11 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <widget class="QWidget" name="centralwidget"/>
+  <widget class="QWidget" name="centralwidget">
+   <property name="mouseTracking">
+    <bool>false</bool>
+   </property>
+  </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
@@ -41,6 +45,8 @@
     <property name="title">
      <string>View</string>
     </property>
+    <addaction name="actionZoomIn"/>
+    <addaction name="actionZoomOut"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
@@ -49,41 +55,32 @@
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QToolBar" name="toolBar">
    <property name="windowTitle">
-    <string>toolBar</string>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(0, 0, 0);</string>
-   </property>
-   <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
-   <addaction name="actionOpen"/>
-   <addaction name="actionExport"/>
-   <addaction name="separator"/>
-   <addaction name="actionUndo"/>
-   <addaction name="actionRedo"/>
-  </widget>
-  <widget class="QToolBar" name="toolBar_2">
-   <property name="windowTitle">
     <string>toolBar_2</string>
    </property>
    <attribute name="toolBarArea">
-    <enum>LeftToolBarArea</enum>
+    <enum>RightToolBarArea</enum>
    </attribute>
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
    <addaction name="actionPencil"/>
+   <addaction name="actionEraser"/>
    <addaction name="actionPen"/>
    <addaction name="actionFill"/>
-   <addaction name="separator"/>
    <addaction name="actionColorPicker"/>
+   <addaction name="actionSelect"/>
+   <addaction name="actionmagicWand"/>
+   <addaction name="separator"/>
    <addaction name="actionZoomIn"/>
+   <addaction name="actionZoomOut"/>
+   <addaction name="separator"/>
+   <addaction name="actionUndo"/>
+   <addaction name="actionRedo"/>
   </widget>
   <action name="actionOpen">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="icon">
     <iconset resource="images.qrc">
      <normaloff>:/images/add-document.png</normaloff>:/images/add-document.png</iconset>
@@ -129,6 +126,12 @@
    </property>
   </action>
   <action name="actionPencil">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
    <property name="icon">
     <iconset resource="images.qrc">
      <normaloff>:/images/pencil.png</normaloff>:/images/pencil.png</iconset>
@@ -138,6 +141,9 @@
    </property>
   </action>
   <action name="actionPen">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="icon">
     <iconset resource="images.qrc">
      <normaloff>:/images/feather.png</normaloff>:/images/feather.png</iconset>
@@ -147,6 +153,9 @@
    </property>
   </action>
   <action name="actionColorPicker">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="icon">
     <iconset resource="images.qrc">
      <normaloff>:/images/eye-dropper.png</normaloff>:/images/eye-dropper.png</iconset>
@@ -156,6 +165,9 @@
    </property>
   </action>
   <action name="actionFill">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="icon">
     <iconset resource="images.qrc">
      <normaloff>:/images/fill.png</normaloff>:/images/fill.png</iconset>
@@ -167,15 +179,61 @@
   <action name="actionZoomIn">
    <property name="icon">
     <iconset resource="images.qrc">
-     <normaloff>:/images/search.png</normaloff>:/images/search.png</iconset>
+     <normaloff>:/images/acercarse.png</normaloff>:/images/acercarse.png</iconset>
    </property>
    <property name="text">
     <string>ZoomIn</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl++</string>
+   </property>
   </action>
   <action name="actionZoomOut">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/disminuir-el-zoom.png</normaloff>:/images/disminuir-el-zoom.png</iconset>
+   </property>
    <property name="text">
     <string>ZoomOut</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+-</string>
+   </property>
+  </action>
+  <action name="actionmagicWand">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/varita-magica.png</normaloff>:/images/varita-magica.png</iconset>
+   </property>
+   <property name="text">
+    <string>MagicWand</string>
+   </property>
+  </action>
+  <action name="actionEraser">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/lapiz.png</normaloff>:/images/lapiz.png</iconset>
+   </property>
+   <property name="text">
+    <string>Eraser</string>
+   </property>
+  </action>
+  <action name="actionSelect">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/expandir.png</normaloff>:/images/expandir.png</iconset>
+   </property>
+   <property name="text">
+    <string>Select</string>
    </property>
   </action>
  </widget>

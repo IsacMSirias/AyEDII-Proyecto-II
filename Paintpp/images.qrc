@@ -10,5 +10,10 @@
         <file>images/fill.png</file>
         <file>images/pencil.png</file>
         <file>images/search.png</file>
+        <file>images/acercarse.png</file>
+        <file>images/disminuir-el-zoom.png</file>
+        <file>images/expandir.png</file>
+        <file>images/lapiz.png</file>
+        <file>images/varita-magica.png</file>
     </qresource>
 </RCC>
