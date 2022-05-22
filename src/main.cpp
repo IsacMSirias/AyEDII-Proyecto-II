@@ -28,7 +28,7 @@ int main() {
 
 	// se estrae una imagen del disco para que se pueda usar en memoria
 
-	BmpImage *fromDisc = new BmpImage("in.bmp");
+	BmpImage *fromDisc = new BmpImage("blackbuck.bmp");
 
 	unsigned char* imgData = fromDisc->getDataArray();
 
