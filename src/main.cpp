@@ -1,8 +1,10 @@
 #include <iostream>
-#include "BmpImage.h"
-#include "BmpImage.cpp"
-#include "rgbMatrix.h"
-#include "rgbMatrix.cpp"
+#include "Bitmap Manager/BmpImage.h"
+#include "Bitmap Manager/BmpImage.cpp"
+#include "Data Structure/rgbMatrix.h"
+#include "Data Structure/rgbMatrix.cpp"
+#include "Graphic Elements/Filters.h"
+#include "Graphic Elements/Filters.cpp"
 
 
 int main() {
@@ -12,6 +14,7 @@ int main() {
 	int h = 400;
 
 	rgbMatrix *rgb = new rgbMatrix(w, h);
+	Filters *filter = new Filters();
 
 	//Se crea una imagen y se exporta al disco
 
@@ -31,7 +34,7 @@ int main() {
 
 	rgbMatrix *outImage = new rgbMatrix(fromDisc->getDataArray(), fromDisc->get_Height(), fromDisc->get_Width());
 
-	outImage->rotate180();
+	filter->negativeFilter(*outImage);
 
 	outImage->CreateRgbArray();
 
