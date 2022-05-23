@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>811</width>
+    <height>642</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -23,7 +23,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>811</width>
      <height>21</height>
     </rect>
    </property>
@@ -31,8 +31,17 @@
     <property name="title">
      <string>File</string>
     </property>
+    <widget class="QMenu" name="menuFilters">
+     <property name="title">
+      <string>Filters</string>
+     </property>
+     <addaction name="actionGrayscale"/>
+     <addaction name="actionNegative"/>
+    </widget>
     <addaction name="actionOpen"/>
     <addaction name="actionExport"/>
+    <addaction name="separator"/>
+    <addaction name="menuFilters"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="title">
@@ -47,6 +56,13 @@
     </property>
     <addaction name="actionZoomIn"/>
     <addaction name="actionZoomOut"/>
+    <addaction name="separator"/>
+    <addaction name="actionRotate"/>
+    <addaction name="separator"/>
+    <addaction name="actionScrollUp"/>
+    <addaction name="actionScrollDown"/>
+    <addaction name="actionScroll_Left"/>
+    <addaction name="actionScroll_Right"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
@@ -70,6 +86,7 @@
    <addaction name="actionColorPicker"/>
    <addaction name="actionSelect"/>
    <addaction name="actionmagicWand"/>
+   <addaction name="actionColor_Palette"/>
    <addaction name="separator"/>
    <addaction name="actionZoomIn"/>
    <addaction name="actionZoomOut"/>
@@ -247,6 +264,57 @@
    </property>
    <property name="text">
     <string>Rotate</string>
+   </property>
+  </action>
+  <action name="actionGrayscale">
+   <property name="text">
+    <string>Grayscale</string>
+   </property>
+  </action>
+  <action name="actionNegative">
+   <property name="text">
+    <string>Negative</string>
+   </property>
+  </action>
+  <action name="actionColor_Palette">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/palette.png</normaloff>:/images/palette.png</iconset>
+   </property>
+   <property name="text">
+    <string>Color Palette</string>
+   </property>
+  </action>
+  <action name="actionScrollUp">
+   <property name="text">
+    <string>Scroll Up</string>
+   </property>
+   <property name="shortcut">
+    <string>Up</string>
+   </property>
+  </action>
+  <action name="actionScrollDown">
+   <property name="text">
+    <string>Scroll Down</string>
+   </property>
+   <property name="shortcut">
+    <string>Down</string>
+   </property>
+  </action>
+  <action name="actionScroll_Left">
+   <property name="text">
+    <string>Scroll Left</string>
+   </property>
+   <property name="shortcut">
+    <string>Left</string>
+   </property>
+  </action>
+  <action name="actionScroll_Right">
+   <property name="text">
+    <string>Scroll Right</string>
+   </property>
+   <property name="shortcut">
+    <string>Right</string>
    </property>
   </action>
  </widget>

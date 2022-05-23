@@ -27,11 +27,26 @@ private slots:
     void on_actionUndo_triggered();
 
     void on_actionRedo_triggered();
+
     void on_actionZoomIn_triggered();
 
     void on_actionZoomOut_triggered();
 
     void on_actionRotate_triggered();
+
+    void on_actionGrayscale_triggered();
+
+    void on_actionNegative_triggered();
+
+    void on_actionColor_Palette_triggered();
+
+    void on_actionScrollUp_triggered();
+
+    void on_actionScrollDown_triggered();
+
+    void on_actionScroll_Left_triggered();
+
+    void on_actionScroll_Right_triggered();
 
 protected:
     void mousePressEvent(QMouseEvent *event) override;

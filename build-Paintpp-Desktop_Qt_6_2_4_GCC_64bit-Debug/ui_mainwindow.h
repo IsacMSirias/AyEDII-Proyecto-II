@@ -38,9 +38,17 @@ public:
     QAction *actionEraser;
     QAction *actionSelect;
     QAction *actionRotate;
+    QAction *actionGrayscale;
+    QAction *actionNegative;
+    QAction *actionColor_Palette;
+    QAction *actionScrollUp;
+    QAction *actionScrollDown;
+    QAction *actionScroll_Left;
+    QAction *actionScroll_Right;
     QWidget *centralwidget;
     QMenuBar *menubar;
     QMenu *menuFile;
+    QMenu *menuFilters;
     QMenu *menuEdit;
     QMenu *menuView;
     QStatusBar *statusbar;
@@ -50,7 +58,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(800, 600);
+        MainWindow->resize(811, 642);
         actionOpen = new QAction(MainWindow);
         actionOpen->setObjectName(QString::fromUtf8("actionOpen"));
         actionOpen->setEnabled(true);
@@ -131,15 +139,34 @@ public:
         QIcon icon13;
         icon13.addFile(QString::fromUtf8(":/images/rotate.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionRotate->setIcon(icon13);
+        actionGrayscale = new QAction(MainWindow);
+        actionGrayscale->setObjectName(QString::fromUtf8("actionGrayscale"));
+        actionNegative = new QAction(MainWindow);
+        actionNegative->setObjectName(QString::fromUtf8("actionNegative"));
+        actionColor_Palette = new QAction(MainWindow);
+        actionColor_Palette->setObjectName(QString::fromUtf8("actionColor_Palette"));
+        QIcon icon14;
+        icon14.addFile(QString::fromUtf8(":/images/palette.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionColor_Palette->setIcon(icon14);
+        actionScrollUp = new QAction(MainWindow);
+        actionScrollUp->setObjectName(QString::fromUtf8("actionScrollUp"));
+        actionScrollDown = new QAction(MainWindow);
+        actionScrollDown->setObjectName(QString::fromUtf8("actionScrollDown"));
+        actionScroll_Left = new QAction(MainWindow);
+        actionScroll_Left->setObjectName(QString::fromUtf8("actionScroll_Left"));
+        actionScroll_Right = new QAction(MainWindow);
+        actionScroll_Right->setObjectName(QString::fromUtf8("actionScroll_Right"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         centralwidget->setMouseTracking(false);
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 800, 21));
+        menubar->setGeometry(QRect(0, 0, 811, 21));
         menuFile = new QMenu(menubar);
         menuFile->setObjectName(QString::fromUtf8("menuFile"));
+        menuFilters = new QMenu(menuFile);
+        menuFilters->setObjectName(QString::fromUtf8("menuFilters"));
         menuEdit = new QMenu(menubar);
         menuEdit->setObjectName(QString::fromUtf8("menuEdit"));
         menuView = new QMenu(menubar);
@@ -157,10 +184,21 @@ public:
         menubar->addAction(menuView->menuAction());
         menuFile->addAction(actionOpen);
         menuFile->addAction(actionExport);
+        menuFile->addSeparator();
+        menuFile->addAction(menuFilters->menuAction());
+        menuFilters->addAction(actionGrayscale);
+        menuFilters->addAction(actionNegative);
         menuEdit->addAction(actionUndo);
         menuEdit->addAction(actionRedo);
         menuView->addAction(actionZoomIn);
         menuView->addAction(actionZoomOut);
+        menuView->addSeparator();
+        menuView->addAction(actionRotate);
+        menuView->addSeparator();
+        menuView->addAction(actionScrollUp);
+        menuView->addAction(actionScrollDown);
+        menuView->addAction(actionScroll_Left);
+        menuView->addAction(actionScroll_Right);
         toolBar->addAction(actionPencil);
         toolBar->addAction(actionEraser);
         toolBar->addAction(actionPen);
@@ -168,6 +206,7 @@ public:
         toolBar->addAction(actionColorPicker);
         toolBar->addAction(actionSelect);
         toolBar->addAction(actionmagicWand);
+        toolBar->addAction(actionColor_Palette);
         toolBar->addSeparator();
         toolBar->addAction(actionZoomIn);
         toolBar->addAction(actionZoomOut);
@@ -213,7 +252,27 @@ public:
         actionEraser->setText(QCoreApplication::translate("MainWindow", "Eraser", nullptr));
         actionSelect->setText(QCoreApplication::translate("MainWindow", "Select", nullptr));
         actionRotate->setText(QCoreApplication::translate("MainWindow", "Rotate", nullptr));
+        actionGrayscale->setText(QCoreApplication::translate("MainWindow", "Grayscale", nullptr));
+        actionNegative->setText(QCoreApplication::translate("MainWindow", "Negative", nullptr));
+        actionColor_Palette->setText(QCoreApplication::translate("MainWindow", "Color Palette", nullptr));
+        actionScrollUp->setText(QCoreApplication::translate("MainWindow", "Scroll Up", nullptr));
+#if QT_CONFIG(shortcut)
+        actionScrollUp->setShortcut(QCoreApplication::translate("MainWindow", "Up", nullptr));
+#endif // QT_CONFIG(shortcut)
+        actionScrollDown->setText(QCoreApplication::translate("MainWindow", "Scroll Down", nullptr));
+#if QT_CONFIG(shortcut)
+        actionScrollDown->setShortcut(QCoreApplication::translate("MainWindow", "Down", nullptr));
+#endif // QT_CONFIG(shortcut)
+        actionScroll_Left->setText(QCoreApplication::translate("MainWindow", "Scroll Left", nullptr));
+#if QT_CONFIG(shortcut)
+        actionScroll_Left->setShortcut(QCoreApplication::translate("MainWindow", "Left", nullptr));
+#endif // QT_CONFIG(shortcut)
+        actionScroll_Right->setText(QCoreApplication::translate("MainWindow", "Scroll Right", nullptr));
+#if QT_CONFIG(shortcut)
+        actionScroll_Right->setShortcut(QCoreApplication::translate("MainWindow", "Right", nullptr));
+#endif // QT_CONFIG(shortcut)
         menuFile->setTitle(QCoreApplication::translate("MainWindow", "File", nullptr));
+        menuFilters->setTitle(QCoreApplication::translate("MainWindow", "Filters", nullptr));
         menuEdit->setTitle(QCoreApplication::translate("MainWindow", "Edit", nullptr));
         menuView->setTitle(QCoreApplication::translate("MainWindow", "View", nullptr));
         toolBar->setWindowTitle(QCoreApplication::translate("MainWindow", "toolBar_2", nullptr));

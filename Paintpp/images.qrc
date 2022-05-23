@@ -17,5 +17,6 @@
         <file>images/varita-magica.png</file>
         <file>images/escoba.png</file>
         <file>images/rotate.png</file>
+        <file>images/palette.png</file>
     </qresource>
 </RCC>

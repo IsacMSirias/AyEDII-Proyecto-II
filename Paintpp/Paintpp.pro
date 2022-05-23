@@ -10,12 +10,16 @@ CONFIG += c++17
 
 SOURCES += \
     BmpImage.cpp \
+    Filters.cpp \
+    Stack.cpp \
     main.cpp \
     mainwindow.cpp \
     rgbMatrix.cpp
 
 HEADERS += \
     BmpImage.h \
+    Filters.h \
+    Stack.h \
     mainwindow.h \
     rgbMatrix.h
 
@@ -28,4 +32,25 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
+    images.qrc \
     images.qrc
+
+DISTFILES += \
+    images/acercarse.png \
+    images/add-document.png \
+    images/disk.png \
+    images/disminuir-el-zoom.png \
+    images/edit-alt.png \
+    images/escoba.png \
+    images/expandir.png \
+    images/eye-dropper.png \
+    images/feather.png \
+    images/fill.png \
+    images/lapiz.png \
+    images/pencil.png \
+    images/redo.png \
+    images/rotate.png \
+    images/search.png \
+    images/undo.png \
+    images/varita-magica.png \
+    in.bmp

@@ -53,17 +53,39 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = ../Paintpp/BmpImage.cpp \
+		../Paintpp/Filters.cpp \
+		../Paintpp/Stack.cpp \
 		../Paintpp/main.cpp \
 		../Paintpp/mainwindow.cpp \
 		../Paintpp/rgbMatrix.cpp qrc_images.cpp \
 		moc_mainwindow.cpp
 OBJECTS       = BmpImage.o \
+		Filters.o \
+		Stack.o \
 		main.o \
 		mainwindow.o \
 		rgbMatrix.o \
 		qrc_images.o \
 		moc_mainwindow.o
-DIST          = ../../../Qt/6.2.4/gcc_64/mkspecs/features/spec_pre.prf \
+DIST          = ../Paintpp/images/acercarse.png \
+		../Paintpp/images/add-document.png \
+		../Paintpp/images/disk.png \
+		../Paintpp/images/disminuir-el-zoom.png \
+		../Paintpp/images/edit-alt.png \
+		../Paintpp/images/escoba.png \
+		../Paintpp/images/expandir.png \
+		../Paintpp/images/eye-dropper.png \
+		../Paintpp/images/feather.png \
+		../Paintpp/images/fill.png \
+		../Paintpp/images/lapiz.png \
+		../Paintpp/images/pencil.png \
+		../Paintpp/images/redo.png \
+		../Paintpp/images/rotate.png \
+		../Paintpp/images/search.png \
+		../Paintpp/images/undo.png \
+		../Paintpp/images/varita-magica.png \
+		../Paintpp/in.bmp \
+		../../../Qt/6.2.4/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../Qt/6.2.4/gcc_64/mkspecs/common/unix.conf \
 		../../../Qt/6.2.4/gcc_64/mkspecs/common/linux.conf \
 		../../../Qt/6.2.4/gcc_64/mkspecs/common/sanitize.conf \
@@ -315,8 +337,12 @@ DIST          = ../../../Qt/6.2.4/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../Qt/6.2.4/gcc_64/mkspecs/features/yacc.prf \
 		../../../Qt/6.2.4/gcc_64/mkspecs/features/lex.prf \
 		../Paintpp/Paintpp.pro ../Paintpp/BmpImage.h \
+		../Paintpp/Filters.h \
+		../Paintpp/Stack.h \
 		../Paintpp/mainwindow.h \
 		../Paintpp/rgbMatrix.h ../Paintpp/BmpImage.cpp \
+		../Paintpp/Filters.cpp \
+		../Paintpp/Stack.cpp \
 		../Paintpp/main.cpp \
 		../Paintpp/mainwindow.cpp \
 		../Paintpp/rgbMatrix.cpp
@@ -858,10 +884,10 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../Paintpp/images.qrc $(DISTDIR)/
+	$(COPY_FILE) --parents ../Paintpp/images.qrc ../Paintpp/images.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents ../../../Qt/6.2.4/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../Paintpp/BmpImage.h ../Paintpp/mainwindow.h ../Paintpp/rgbMatrix.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../Paintpp/BmpImage.cpp ../Paintpp/main.cpp ../Paintpp/mainwindow.cpp ../Paintpp/rgbMatrix.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../Paintpp/BmpImage.h ../Paintpp/Filters.h ../Paintpp/Stack.h ../Paintpp/mainwindow.h ../Paintpp/rgbMatrix.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../Paintpp/BmpImage.cpp ../Paintpp/Filters.cpp ../Paintpp/Stack.cpp ../Paintpp/main.cpp ../Paintpp/mainwindow.cpp ../Paintpp/rgbMatrix.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../Paintpp/mainwindow.ui $(DISTDIR)/
 
 
@@ -886,9 +912,9 @@ check: first
 
 benchmark: first
 
-compiler_rcc_make_all: qrc_images.cpp
+compiler_rcc_make_all: qrc_images.cpp qrc_images.cpp
 compiler_rcc_clean:
-	-$(DEL_FILE) qrc_images.cpp
+	-$(DEL_FILE) qrc_images.cpp qrc_images.cpp
 qrc_images.cpp: ../Paintpp/images.qrc \
 		../../../Qt/6.2.4/gcc_64/libexec/rcc \
 		../Paintpp/images/redo.png \
@@ -896,6 +922,29 @@ qrc_images.cpp: ../Paintpp/images.qrc \
 		../Paintpp/images/lapiz.png \
 		../Paintpp/images/expandir.png \
 		../Paintpp/images/add-document.png \
+		../Paintpp/images/palette.png \
+		../Paintpp/images/acercarse.png \
+		../Paintpp/images/undo.png \
+		../Paintpp/images/search.png \
+		../Paintpp/images/fill.png \
+		../Paintpp/images/disminuir-el-zoom.png \
+		../Paintpp/images/disk.png \
+		../Paintpp/images/feather.png \
+		../Paintpp/images/pencil.png \
+		../Paintpp/images/escoba.png \
+		../Paintpp/images/rotate.png \
+		../Paintpp/images/varita-magica.png \
+		../Paintpp/images/eye-dropper.png
+	/home/danielcob/Qt/6.2.4/gcc_64/libexec/rcc -name images ../Paintpp/images.qrc -o qrc_images.cpp
+
+qrc_images.cpp: ../Paintpp/images.qrc \
+		../../../Qt/6.2.4/gcc_64/libexec/rcc \
+		../Paintpp/images/redo.png \
+		../Paintpp/images/edit-alt.png \
+		../Paintpp/images/lapiz.png \
+		../Paintpp/images/expandir.png \
+		../Paintpp/images/add-document.png \
+		../Paintpp/images/palette.png \
 		../Paintpp/images/acercarse.png \
 		../Paintpp/images/undo.png \
 		../Paintpp/images/search.png \
@@ -1081,6 +1130,13 @@ compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_heade
 
 BmpImage.o: ../Paintpp/BmpImage.cpp ../Paintpp/BmpImage.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o BmpImage.o ../Paintpp/BmpImage.cpp
+
+Filters.o: ../Paintpp/Filters.cpp ../Paintpp/Filters.h \
+		../Paintpp/rgbMatrix.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Filters.o ../Paintpp/Filters.cpp
+
+Stack.o: ../Paintpp/Stack.cpp ../Paintpp/Stack.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Stack.o ../Paintpp/Stack.cpp
 
 main.o: ../Paintpp/main.cpp ../Paintpp/mainwindow.h \
 		../Paintpp/rgbMatrix.h \
@@ -1348,12 +1404,11 @@ mainwindow.o: ../Paintpp/mainwindow.cpp ../../../Qt/6.2.4/gcc_64/include/QtGui/Q
 		../../../Qt/6.2.4/gcc_64/include/QtCore/qline.h \
 		../../../Qt/6.2.4/gcc_64/include/QtCore/qnativeinterface.h \
 		../../../Qt/6.2.4/gcc_64/include/QtGui/qkeysequence.h \
-		../Paintpp/mainwindow.h \
-		../Paintpp/rgbMatrix.h \
-		../../../Qt/6.2.4/gcc_64/include/QtWidgets/QMainWindow \
-		../../../Qt/6.2.4/gcc_64/include/QtWidgets/qmainwindow.h \
+		../../../Qt/6.2.4/gcc_64/include/QtWidgets/QColorDialog \
+		../../../Qt/6.2.4/gcc_64/include/QtWidgets/qcolordialog.h \
 		../../../Qt/6.2.4/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
 		../../../Qt/6.2.4/gcc_64/include/QtWidgets/qtwidgets-config.h \
+		../../../Qt/6.2.4/gcc_64/include/QtWidgets/qdialog.h \
 		../../../Qt/6.2.4/gcc_64/include/QtWidgets/qwidget.h \
 		../../../Qt/6.2.4/gcc_64/include/QtGui/qpaintdevice.h \
 		../../../Qt/6.2.4/gcc_64/include/QtGui/qpalette.h \
@@ -1370,6 +1425,10 @@ mainwindow.o: ../Paintpp/mainwindow.cpp ../../../Qt/6.2.4/gcc_64/include/QtGui/Q
 		../../../Qt/6.2.4/gcc_64/include/QtWidgets/qsizepolicy.h \
 		../../../Qt/6.2.4/gcc_64/include/QtGui/qcursor.h \
 		../../../Qt/6.2.4/gcc_64/include/QtGui/qbitmap.h \
+		../Paintpp/mainwindow.h \
+		../Paintpp/rgbMatrix.h \
+		../../../Qt/6.2.4/gcc_64/include/QtWidgets/QMainWindow \
+		../../../Qt/6.2.4/gcc_64/include/QtWidgets/qmainwindow.h \
 		../../../Qt/6.2.4/gcc_64/include/QtWidgets/qtabwidget.h \
 		../../../Qt/6.2.4/gcc_64/include/QtGui/qicon.h \
 		../../../Qt/6.2.4/gcc_64/include/QtGui/QPainter \
@@ -1410,7 +1469,9 @@ mainwindow.o: ../Paintpp/mainwindow.cpp ../../../Qt/6.2.4/gcc_64/include/QtGui/Q
 		../../../Qt/6.2.4/gcc_64/include/QtWidgets/QToolBar \
 		../../../Qt/6.2.4/gcc_64/include/QtWidgets/qtoolbar.h \
 		../../../Qt/6.2.4/gcc_64/include/QtWidgets/QWidget \
-		../Paintpp/BmpImage.h
+		../Paintpp/BmpImage.h \
+		../Paintpp/Filters.h \
+		../Paintpp/Stack.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../Paintpp/mainwindow.cpp
 
 rgbMatrix.o: ../Paintpp/rgbMatrix.cpp ../Paintpp/rgbMatrix.h

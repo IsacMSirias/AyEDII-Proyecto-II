@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
-    const uint offsetsAndSize[18];
-    char stringdata0[189];
+    const uint offsetsAndSize[32];
+    char stringdata0[400];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(offsetof(qt_meta_stringdata_MainWindow_t, stringdata0) + ofs), len 
@@ -37,7 +37,14 @@ QT_MOC_LITERAL(62, 23), // "on_actionUndo_triggered"
 QT_MOC_LITERAL(86, 23), // "on_actionRedo_triggered"
 QT_MOC_LITERAL(110, 25), // "on_actionZoomIn_triggered"
 QT_MOC_LITERAL(136, 26), // "on_actionZoomOut_triggered"
-QT_MOC_LITERAL(163, 25) // "on_actionRotate_triggered"
+QT_MOC_LITERAL(163, 25), // "on_actionRotate_triggered"
+QT_MOC_LITERAL(189, 28), // "on_actionGrayscale_triggered"
+QT_MOC_LITERAL(218, 27), // "on_actionNegative_triggered"
+QT_MOC_LITERAL(246, 32), // "on_actionColor_Palette_triggered"
+QT_MOC_LITERAL(279, 27), // "on_actionScrollUp_triggered"
+QT_MOC_LITERAL(307, 29), // "on_actionScrollDown_triggered"
+QT_MOC_LITERAL(337, 30), // "on_actionScroll_Left_triggered"
+QT_MOC_LITERAL(368, 31) // "on_actionScroll_Right_triggered"
 
     },
     "MainWindow\0on_actionOpen_triggered\0\0"
@@ -45,7 +52,14 @@ QT_MOC_LITERAL(163, 25) // "on_actionRotate_triggered"
     "on_actionUndo_triggered\0on_actionRedo_triggered\0"
     "on_actionZoomIn_triggered\0"
     "on_actionZoomOut_triggered\0"
-    "on_actionRotate_triggered"
+    "on_actionRotate_triggered\0"
+    "on_actionGrayscale_triggered\0"
+    "on_actionNegative_triggered\0"
+    "on_actionColor_Palette_triggered\0"
+    "on_actionScrollUp_triggered\0"
+    "on_actionScrollDown_triggered\0"
+    "on_actionScroll_Left_triggered\0"
+    "on_actionScroll_Right_triggered"
 };
 #undef QT_MOC_LITERAL
 
@@ -55,7 +69,7 @@ static const uint qt_meta_data_MainWindow[] = {
       10,       // revision
        0,       // classname
        0,    0, // classinfo
-       7,   14, // methods
+      14,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -63,15 +77,29 @@ static const uint qt_meta_data_MainWindow[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   56,    2, 0x08,    1 /* Private */,
-       3,    0,   57,    2, 0x08,    2 /* Private */,
-       4,    0,   58,    2, 0x08,    3 /* Private */,
-       5,    0,   59,    2, 0x08,    4 /* Private */,
-       6,    0,   60,    2, 0x08,    5 /* Private */,
-       7,    0,   61,    2, 0x08,    6 /* Private */,
-       8,    0,   62,    2, 0x08,    7 /* Private */,
+       1,    0,   98,    2, 0x08,    1 /* Private */,
+       3,    0,   99,    2, 0x08,    2 /* Private */,
+       4,    0,  100,    2, 0x08,    3 /* Private */,
+       5,    0,  101,    2, 0x08,    4 /* Private */,
+       6,    0,  102,    2, 0x08,    5 /* Private */,
+       7,    0,  103,    2, 0x08,    6 /* Private */,
+       8,    0,  104,    2, 0x08,    7 /* Private */,
+       9,    0,  105,    2, 0x08,    8 /* Private */,
+      10,    0,  106,    2, 0x08,    9 /* Private */,
+      11,    0,  107,    2, 0x08,   10 /* Private */,
+      12,    0,  108,    2, 0x08,   11 /* Private */,
+      13,    0,  109,    2, 0x08,   12 /* Private */,
+      14,    0,  110,    2, 0x08,   13 /* Private */,
+      15,    0,  111,    2, 0x08,   14 /* Private */,
 
  // slots: parameters
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -96,6 +124,13 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 4: _t->on_actionZoomIn_triggered(); break;
         case 5: _t->on_actionZoomOut_triggered(); break;
         case 6: _t->on_actionRotate_triggered(); break;
+        case 7: _t->on_actionGrayscale_triggered(); break;
+        case 8: _t->on_actionNegative_triggered(); break;
+        case 9: _t->on_actionColor_Palette_triggered(); break;
+        case 10: _t->on_actionScrollUp_triggered(); break;
+        case 11: _t->on_actionScrollDown_triggered(); break;
+        case 12: _t->on_actionScroll_Left_triggered(); break;
+        case 13: _t->on_actionScroll_Right_triggered(); break;
         default: ;
         }
     }
@@ -110,7 +145,7 @@ const QMetaObject MainWindow::staticMetaObject = { {
     nullptr,
 qt_incomplete_metaTypeArray<qt_meta_stringdata_MainWindow_t
 , QtPrivate::TypeAndForceComplete<MainWindow, std::true_type>
-, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>
+, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>
 
 
 >,
@@ -137,13 +172,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 7)
+        if (_id < 14)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 7;
+        _id -= 14;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 7)
+        if (_id < 14)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 7;
+        _id -= 14;
     }
     return _id;
 }
