@@ -88,6 +88,11 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
         rgbColor color = imgMatrix->getColor((event->position().y()-ui->menubar->height()-10-scrollY)/zoomSize, (event->position().x()-10-scrollX)/zoomSize);
         selectedColor = new rgbColor(color.r, color.g, color.b);
     }
+    if (ui->actionFill->isChecked())
+    {
+        Filters fill;
+        fill.paintFill(imgMatrix->getColor((event->position().y()-ui->menubar->height()-10-scrollY)/zoomSize, (event->position().x()-10-scrollX)/zoomSize), *selectedColor,((event->position().x()-10-scrollX)/zoomSize), ((event->position().y()-ui->menubar->height()-10-scrollY)/zoomSize), *imgMatrix);
+    }
     update();
 }
 
