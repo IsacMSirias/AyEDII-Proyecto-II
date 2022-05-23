@@ -35,3 +35,18 @@ void Filters:: negativeFilter(rgbMatrix matrix){
     
     std::cout<< "Negative Filter aply"<< std::endl;
 }
+
+void Filters::paintFill(const rgbColor &colorPicked, const rgbColor &selectedColor, int x, int y, rgbMatrix matrix){
+
+    if(x < matrix.get_Width() && y < matrix.get_Height() && x >= 0 && y >= 0){
+        rgbColor currentColor = matrix.getColor(y, x);
+        if(currentColor.b == colorPicked.b && currentColor.g == colorPicked.g && currentColor.r == colorPicked.r){
+
+            matrix.setColor(selectedColor, y, x);
+            paintFill(colorPicked, selectedColor, x -1, y, matrix);
+            paintFill(colorPicked, selectedColor, x +1, y, matrix);
+            paintFill(colorPicked, selectedColor, x , y -1, matrix);
+            paintFill(colorPicked, selectedColor, x , y+ 1, matrix);
+        }
+    }
+}

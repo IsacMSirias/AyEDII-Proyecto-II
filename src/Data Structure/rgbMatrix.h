@@ -40,6 +40,7 @@ public:
 
     void setColor(const rgbColor &rgbcolor, int x, int y);
     
+    
     void reflectX();
     void reflectY();
     void reflectXY();

@@ -34,13 +34,14 @@ int main() {
 
 	rgbMatrix *outImage = new rgbMatrix(fromDisc->getDataArray(), fromDisc->get_Height(), fromDisc->get_Width());
 
-	filter->negativeFilter(*outImage);
+	//filter->negativeFilter(*outImage);
+	filter->paintFill(outImage->getColor(140,140), rgbColor(255,0,0), 140,140, *outImage);
 
 	outImage->CreateRgbArray();
 
 	int size2 = outImage->get_rgbArraySize();
 
-	BmpImage *ReadImage = new BmpImage("out", outImage->get_Width(), outImage->get_Height(), outImage->get_rgbArray(), size2);
+	BmpImage *ReadImage = new BmpImage("outfill", outImage->get_Width(), outImage->get_Height(), outImage->get_rgbArray(), size2);
 	
 	
 	return 0;
