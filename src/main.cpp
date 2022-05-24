@@ -3,8 +3,8 @@
 #include "Bitmap Manager/BmpImage.cpp"
 #include "Data Structure/rgbMatrix.h"
 #include "Data Structure/rgbMatrix.cpp"
-#include "Graphic Elements/Filters.h"
-#include "Graphic Elements/Filters.cpp"
+#include "Graphic Elements/Graphics.h"
+#include "Graphic Elements/Graphics.cpp"
 
 
 int main() {
@@ -14,11 +14,15 @@ int main() {
 	int h = 400;
 
 	rgbMatrix *rgb = new rgbMatrix(w, h);
-	Filters *filter = new Filters();
+	Graphics *graphics = new Graphics();
 
 	//Se crea una imagen y se exporta al disco
 
 	rgb->whiteCanvas();
+
+	//graphics->draw_WhitPen(rgbColor(111,222, 111), 80,60, 40, 22, 1, *rgb);
+	
+	graphics->draw_WhitPen(rgbColor(0, 0, 0), 10, 10, 200, 200, 4, *rgb);
 
 	rgb->CreateRgbArray();
 
@@ -35,8 +39,9 @@ int main() {
 	rgbMatrix *outImage = new rgbMatrix(fromDisc->getDataArray(), fromDisc->get_Height(), fromDisc->get_Width());
 
 	//filter->negativeFilter(*outImage);
-	filter->paintFill(outImage->getColor(140,140), rgbColor(255,0,0), 140,140, *outImage);
-
+	//graphics->paintFill(outImage->getColor(140,140), rgbColor(255,0,0), 140,140, *outImage);
+	
+	
 	outImage->CreateRgbArray();
 
 	int size2 = outImage->get_rgbArraySize();
