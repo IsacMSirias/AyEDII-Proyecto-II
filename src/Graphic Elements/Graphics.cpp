@@ -121,7 +121,7 @@ void Graphics:: experimentalFilter2(rgbMatrix matrix){
         for (int y = 0; y < matrix.get_Width(); y++){
 
             rgbColor tempRGB =  matrix.getColor(x,y);
-            float new_R = 111* tempRGB.r;
+            float new_R = 111*tempRGB.r;
             float new_G = 222*tempRGB.g;
             float new_B = 111*tempRGB.b;
             matrix.setColor(rgbColor(new_R, new_G, new_B), x, y);
