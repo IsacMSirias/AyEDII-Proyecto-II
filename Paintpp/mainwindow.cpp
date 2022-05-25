@@ -141,7 +141,7 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)
         }
         if (ui->geometry_comboBox->currentText() == "Circle")
         {
-            paint.elipse(*selectedColor, posX1, posY1, ((event->position().x()-10-scrollX)/zoomSize), ((event->position().y()-ui->menubar->height()-10-scrollY)/zoomSize), *imgMatrix);
+            paint.circle(*selectedColor, posY1, posX1, ((event->position().y()-ui->menubar->height()-10-scrollY)/zoomSize), ((event->position().x()-10-scrollX)/zoomSize), thickness, *imgMatrix);
         }
     }
     update();

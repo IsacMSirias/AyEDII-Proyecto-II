@@ -74,7 +74,7 @@ void Graphics::grayFilter(rgbMatrix matrix){
         
     }
     
-    std::cout<< "Gray Scale Filter aply"<< std::endl;
+    std::cout<< "Gray Scale Filter apply"<< std::endl;
 }
 
 void Graphics:: negativeFilter(rgbMatrix matrix){
@@ -92,7 +92,7 @@ void Graphics:: negativeFilter(rgbMatrix matrix){
         
     }
     
-    std::cout<< "Negative Filter aply"<< std::endl;
+    std::cout<< "Negative Filter apply"<< std::endl;
 }
 
 void Graphics:: experimentalFilter1(rgbMatrix matrix){
@@ -110,12 +110,12 @@ void Graphics:: experimentalFilter1(rgbMatrix matrix){
 
     }
 
-    std::cout<< "extra  Filter aply"<< std::endl;
+    std::cout<< "extra  Filter apply"<< std::endl;
 }
 
 
-void Graphics:: experimentalFilter2(rgbMatrix matrix){
-
+void Graphics:: experimentalFilter2(rgbMatrix matrix)
+{
     for (int x = 0; x < matrix.get_Height(); x++){
 
         for (int y = 0; y < matrix.get_Width(); y++){
@@ -129,12 +129,16 @@ void Graphics:: experimentalFilter2(rgbMatrix matrix){
 
     }
 
-    std::cout<< "extra  Filter aply"<< std::endl;
+    std::cout<< "extra  Filter apply"<< std::endl;
 }
 
-void Graphics::paintFill(const rgbColor &colorPicked, const rgbColor &selectedColor, int x, int y, rgbMatrix matrix){
-
-    if(x < matrix.get_Width() && y < matrix.get_Height() && x >= 0 && y >= 0){
+void Graphics::paintFill(const rgbColor &colorPicked, const rgbColor &selectedColor, int x, int y, rgbMatrix matrix)
+{
+    if (selectedColor.b == colorPicked.b && selectedColor.g == colorPicked.g && selectedColor.r == colorPicked.r)
+    {
+        std::cout << "Can't fill the same color." << std::endl;
+    }
+    else if(x < matrix.get_Width() && y < matrix.get_Height() && x >= 0 && y >= 0){
         rgbColor currentColor = matrix.getColor(y, x);
         if(currentColor.b == colorPicked.b && currentColor.g == colorPicked.g && currentColor.r == colorPicked.r){
 
@@ -158,48 +162,24 @@ void Graphics::triangle(const rgbColor &rgbcolor, int initial_x, int initial_y, 
 
 
 void Graphics::square(const rgbColor &rgbcolor, int initial_x, int initial_y, int final_x, 
-                                            int final_y, int thickness,rgbMatrix matrix){
-    int dx = (final_x - initial_x);
-    int dy = (final_y - initial_y);
-    int X_length = std::min(abs(dx), abs(dy));
-    int Y_length = X_length;
-        if (dx < 0){
-            X_length = (X_length * -1);
-             }
-            if (dy < 0){
-                Y_length = (Y_length * -1);
-              }
-                draw_WithPen(rgbcolor, initial_y, initial_x, initial_y, initial_x + X_length, thickness, matrix);
-                draw_WithPen(rgbcolor, initial_y, initial_x, initial_x + Y_length, initial_x, thickness, matrix);
-                draw_WithPen(rgbcolor, initial_y + Y_length, initial_x, initial_y + Y_length, initial_x + X_length, thickness, matrix);
-                draw_WithPen(rgbcolor, initial_y, initial_x + X_length, initial_y + Y_length, initial_x + X_length, thickness, matrix);
+                                            int final_y, int thickness, rgbMatrix matrix)
+{
+    draw_WithPen(rgbcolor, initial_y, initial_x, initial_y, final_x, thickness, matrix);
+    draw_WithPen(rgbcolor, initial_y, initial_x, final_y, initial_x, thickness, matrix);
+    draw_WithPen(rgbcolor, initial_y, final_x, final_y, final_x, thickness, matrix);
+    draw_WithPen(rgbcolor, final_y, initial_x, final_y, final_x, thickness, matrix);
 }
 
-void Graphics::elipse(const rgbColor &rgbcolor, int initial_x, int initial_y, 
-                                int final_x, int final_y, rgbMatrix matrix){   
+void Graphics::circle(const rgbColor &rgbcolor, int initial_x, int initial_y,
+                                int final_x, int final_y, int thickness, rgbMatrix matrix)
+{
+    int radius = std::sqrt(std::pow(initial_x-final_x, 2)+std::pow(initial_y-final_y, 2));
 
-    int x = std::min(initial_x,final_x); int y = std::min(initial_y,final_y);
-    int dx = abs(final_x- initial_x);int dy = abs(final_y-initial_y); 
-    int covertice = x + dx/2; int vertice = y + dy/2;
-    int Eje_Menor = dx*dx/4; int Eje_Mayor = dy*dy/4;
-
-    for (float focus = (float)x; focus <= x + dx; focus+=0.001){
-        
-        float centerInitial_y = (float)sqrt((1-(float)((focus-covertice)*(focus-covertice))/Eje_Menor)*Eje_Mayor)+vertice;
-        float centerFinal_y = -1*(float)sqrt((1-(float)((focus-covertice)*(focus-covertice))/Eje_Menor)*Eje_Mayor)+vertice;
-            matrix.setColor(rgbcolor, centerInitial_y, focus);
-            matrix.setColor(rgbcolor, centerFinal_y, focus);
+    for (int i = 0; i < matrix.get_Width(); ++i) {
+        for (int j = 0; j < matrix.get_Height(); ++j) {
+            if((int) std::pow((i-initial_x), 2)+std::pow((j-initial_y), 2) <= (int) std::pow(radius, 2) && (int) std::pow((i-initial_x), 2)+std::pow((j-initial_y), 2) >= (int) std::pow(radius-1, 2)) {
+                draw_WithPencil(rgbcolor, i, j, thickness, matrix);
+            }
+        }
     }
-    
-        
-}
-
-void Graphics::circle(const rgbColor &rgbcolor, int initial_x, int initial_y, int final_x, int final_y, rgbMatrix matrix) {
-    
-    int dx = (final_x-initial_x); int dy = (final_y-initial_y);
-    int lenght = std::min(abs(dx),abs(dy));
-    int horizontalDiameter= std::min(initial_x,final_x); int  verticalDiameter = std::min(initial_y,final_y);
-    int new_x = horizontalDiameter + lenght;
-    int new_y = verticalDiameter + lenght;
-        elipse(rgbcolor,horizontalDiameter,verticalDiameter,new_x,new_y, matrix);
 }
