@@ -48,6 +48,26 @@ private slots:
 
     void on_actionScroll_Right_triggered();
 
+    void on_thickness_pushButton_clicked();
+
+    void on_actionThickness_triggered();
+
+    void on_path_pushButton_clicked();
+
+    void on_filename_pushButton_clicked();
+
+    void on_actionNew_canvas_triggered();
+
+    void on_canvasSize_pushButton_clicked();
+
+    void on_geometry_pushButton_clicked();
+
+    void on_actionGeometry_triggered(bool checked);
+
+    void on_actionExperimental_1_triggered();
+
+    void on_actionExperimental_2_triggered();
+
 protected:
     void mousePressEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;

@@ -7,7 +7,7 @@
         "-I",
         "/home/danielcob/Qt/Tools/QtCreator/share/qtcreator/cplusplus/wrappedQtHeaders/QtCore",
         "-I",
-        "/tmp/QtCreator-pPthNg/clang-uiheader-zkJRAs",
+        "/tmp/QtCreator-uKpAhj/clang-uiheader-BChENe",
         "-nostdinc",
         "-nostdinc++",
         "-pipe",
@@ -76,7 +76,7 @@
         "-I",
         "/home/danielcob/Qt/Tools/QtCreator/share/qtcreator/cplusplus/wrappedQtHeaders/QtCore",
         "-I",
-        "/tmp/QtCreator-pPthNg/clang-uiheader-zkJRAs",
+        "/tmp/QtCreator-uKpAhj/clang-uiheader-BChENe",
         "-nostdinc",
         "-nostdinc++",
         "-pipe",
@@ -132,10 +132,10 @@
         "-Wno-unknown-pragmas",
         "-Wno-unknown-warning-option",
         "-Wno-documentation-unknown-command",
-        "/home/danielcob/Documents/AyEDII-Proyecto-II/Paintpp/Filters.cpp"
+        "/home/danielcob/Documents/AyEDII-Proyecto-II/Paintpp/Graphics.cpp"
     ],
     "directory": "/home/danielcob/Documents/AyEDII-Proyecto-II/build-Paintpp-Desktop_Qt_6_2_4_GCC_64bit-Debug/.qtc_clangd",
-    "file": "/home/danielcob/Documents/AyEDII-Proyecto-II/Paintpp/Filters.cpp"
+    "file": "/home/danielcob/Documents/AyEDII-Proyecto-II/Paintpp/Graphics.cpp"
 },
 {
     "arguments": [
@@ -145,7 +145,7 @@
         "-I",
         "/home/danielcob/Qt/Tools/QtCreator/share/qtcreator/cplusplus/wrappedQtHeaders/QtCore",
         "-I",
-        "/tmp/QtCreator-pPthNg/clang-uiheader-zkJRAs",
+        "/tmp/QtCreator-uKpAhj/clang-uiheader-BChENe",
         "-nostdinc",
         "-nostdinc++",
         "-pipe",
@@ -214,7 +214,7 @@
         "-I",
         "/home/danielcob/Qt/Tools/QtCreator/share/qtcreator/cplusplus/wrappedQtHeaders/QtCore",
         "-I",
-        "/tmp/QtCreator-pPthNg/clang-uiheader-zkJRAs",
+        "/tmp/QtCreator-uKpAhj/clang-uiheader-BChENe",
         "-nostdinc",
         "-nostdinc++",
         "-pipe",
@@ -283,7 +283,7 @@
         "-I",
         "/home/danielcob/Qt/Tools/QtCreator/share/qtcreator/cplusplus/wrappedQtHeaders/QtCore",
         "-I",
-        "/tmp/QtCreator-pPthNg/clang-uiheader-zkJRAs",
+        "/tmp/QtCreator-uKpAhj/clang-uiheader-BChENe",
         "-nostdinc",
         "-nostdinc++",
         "-pipe",
@@ -352,7 +352,7 @@
         "-I",
         "/home/danielcob/Qt/Tools/QtCreator/share/qtcreator/cplusplus/wrappedQtHeaders/QtCore",
         "-I",
-        "/tmp/QtCreator-pPthNg/clang-uiheader-zkJRAs",
+        "/tmp/QtCreator-uKpAhj/clang-uiheader-BChENe",
         "-nostdinc",
         "-nostdinc++",
         "-pipe",
@@ -421,7 +421,7 @@
         "-I",
         "/home/danielcob/Qt/Tools/QtCreator/share/qtcreator/cplusplus/wrappedQtHeaders/QtCore",
         "-I",
-        "/tmp/QtCreator-pPthNg/clang-uiheader-zkJRAs",
+        "/tmp/QtCreator-uKpAhj/clang-uiheader-BChENe",
         "-nostdinc",
         "-nostdinc++",
         "-pipe",
@@ -490,7 +490,7 @@
         "-I",
         "/home/danielcob/Qt/Tools/QtCreator/share/qtcreator/cplusplus/wrappedQtHeaders/QtCore",
         "-I",
-        "/tmp/QtCreator-pPthNg/clang-uiheader-zkJRAs",
+        "/tmp/QtCreator-uKpAhj/clang-uiheader-BChENe",
         "-nostdinc",
         "-nostdinc++",
         "-pipe",
@@ -546,10 +546,10 @@
         "-Wno-unknown-pragmas",
         "-Wno-unknown-warning-option",
         "-Wno-documentation-unknown-command",
-        "/home/danielcob/Documents/AyEDII-Proyecto-II/Paintpp/Filters.h"
+        "/home/danielcob/Documents/AyEDII-Proyecto-II/Paintpp/Graphics.h"
     ],
     "directory": "/home/danielcob/Documents/AyEDII-Proyecto-II/build-Paintpp-Desktop_Qt_6_2_4_GCC_64bit-Debug/.qtc_clangd",
-    "file": "/home/danielcob/Documents/AyEDII-Proyecto-II/Paintpp/Filters.h"
+    "file": "/home/danielcob/Documents/AyEDII-Proyecto-II/Paintpp/Graphics.h"
 },
 {
     "arguments": [
@@ -559,7 +559,7 @@
         "-I",
         "/home/danielcob/Qt/Tools/QtCreator/share/qtcreator/cplusplus/wrappedQtHeaders/QtCore",
         "-I",
-        "/tmp/QtCreator-pPthNg/clang-uiheader-zkJRAs",
+        "/tmp/QtCreator-uKpAhj/clang-uiheader-BChENe",
         "-nostdinc",
         "-nostdinc++",
         "-pipe",
@@ -628,7 +628,7 @@
         "-I",
         "/home/danielcob/Qt/Tools/QtCreator/share/qtcreator/cplusplus/wrappedQtHeaders/QtCore",
         "-I",
-        "/tmp/QtCreator-pPthNg/clang-uiheader-zkJRAs",
+        "/tmp/QtCreator-uKpAhj/clang-uiheader-BChENe",
         "-nostdinc",
         "-nostdinc++",
         "-pipe",
@@ -697,7 +697,7 @@
         "-I",
         "/home/danielcob/Qt/Tools/QtCreator/share/qtcreator/cplusplus/wrappedQtHeaders/QtCore",
         "-I",
-        "/tmp/QtCreator-pPthNg/clang-uiheader-zkJRAs",
+        "/tmp/QtCreator-uKpAhj/clang-uiheader-BChENe",
         "-nostdinc",
         "-nostdinc++",
         "-pipe",
@@ -766,7 +766,7 @@
         "-I",
         "/home/danielcob/Qt/Tools/QtCreator/share/qtcreator/cplusplus/wrappedQtHeaders/QtCore",
         "-I",
-        "/tmp/QtCreator-pPthNg/clang-uiheader-zkJRAs",
+        "/tmp/QtCreator-uKpAhj/clang-uiheader-BChENe",
         "-nostdinc",
         "-nostdinc++",
         "-pipe",

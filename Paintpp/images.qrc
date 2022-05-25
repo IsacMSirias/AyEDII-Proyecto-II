@@ -18,5 +18,8 @@
         <file>images/escoba.png</file>
         <file>images/rotate.png</file>
         <file>images/palette.png</file>
+        <file>images/line-width.png</file>
+        <file>images/resources.png</file>
+        <file>images/folder.png</file>
     </qresource>
 </RCC>

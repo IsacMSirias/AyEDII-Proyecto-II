@@ -10,7 +10,7 @@ CONFIG += c++17
 
 SOURCES += \
     BmpImage.cpp \
-    Filters.cpp \
+    Graphics.cpp \
     Stack.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -18,7 +18,7 @@ SOURCES += \
 
 HEADERS += \
     BmpImage.h \
-    Filters.h \
+    Graphics.h \
     Stack.h \
     mainwindow.h \
     rgbMatrix.h
@@ -32,6 +32,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
+    images.qrc \
     images.qrc \
     images.qrc
 
@@ -47,6 +48,7 @@ DISTFILES += \
     images/feather.png \
     images/fill.png \
     images/lapiz.png \
+    images/palette.png \
     images/pencil.png \
     images/redo.png \
     images/rotate.png \

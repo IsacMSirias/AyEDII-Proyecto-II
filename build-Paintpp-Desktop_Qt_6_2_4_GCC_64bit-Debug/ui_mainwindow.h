@@ -12,9 +12,14 @@
 #include <QtCore/QVariant>
 #include <QtGui/QAction>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QComboBox>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpinBox>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QWidget>
@@ -45,7 +50,35 @@ public:
     QAction *actionScrollDown;
     QAction *actionScroll_Left;
     QAction *actionScroll_Right;
+    QAction *actionThickness;
+    QAction *actionGeometry;
+    QAction *actionNew_canvas;
+    QAction *actionExperimental_1;
+    QAction *actionExperimental_2;
     QWidget *centralwidget;
+    QWidget *thicknessWidget;
+    QSpinBox *thickness_spinBox;
+    QLabel *thickness_label;
+    QPushButton *thickness_pushButton;
+    QWidget *pathWidget;
+    QLabel *path_label;
+    QPushButton *path_pushButton;
+    QLineEdit *path_lineEdit;
+    QWidget *filenameWidget;
+    QLabel *filename_label;
+    QPushButton *filename_pushButton;
+    QLineEdit *filename_lineEdit;
+    QWidget *canvasSizeWidget;
+    QLabel *canvasSize_label;
+    QPushButton *canvasSize_pushButton;
+    QSpinBox *width_spinBox;
+    QSpinBox *height_spinBox;
+    QLabel *height_label;
+    QLabel *width_label;
+    QWidget *geometryWidget;
+    QLabel *geometry_label;
+    QPushButton *geometry_pushButton;
+    QComboBox *geometry_comboBox;
     QMenuBar *menubar;
     QMenu *menuFile;
     QMenu *menuFilters;
@@ -63,7 +96,7 @@ public:
         actionOpen->setObjectName(QString::fromUtf8("actionOpen"));
         actionOpen->setEnabled(true);
         QIcon icon;
-        icon.addFile(QString::fromUtf8(":/images/add-document.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon.addFile(QString::fromUtf8(":/images/folder.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionOpen->setIcon(icon);
         actionExport = new QAction(MainWindow);
         actionExport->setObjectName(QString::fromUtf8("actionExport"));
@@ -156,9 +189,158 @@ public:
         actionScroll_Left->setObjectName(QString::fromUtf8("actionScroll_Left"));
         actionScroll_Right = new QAction(MainWindow);
         actionScroll_Right->setObjectName(QString::fromUtf8("actionScroll_Right"));
+        actionThickness = new QAction(MainWindow);
+        actionThickness->setObjectName(QString::fromUtf8("actionThickness"));
+        QIcon icon15;
+        icon15.addFile(QString::fromUtf8(":/images/line-width.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionThickness->setIcon(icon15);
+        actionGeometry = new QAction(MainWindow);
+        actionGeometry->setObjectName(QString::fromUtf8("actionGeometry"));
+        actionGeometry->setCheckable(true);
+        QIcon icon16;
+        icon16.addFile(QString::fromUtf8(":/images/resources.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionGeometry->setIcon(icon16);
+        actionNew_canvas = new QAction(MainWindow);
+        actionNew_canvas->setObjectName(QString::fromUtf8("actionNew_canvas"));
+        QIcon icon17;
+        icon17.addFile(QString::fromUtf8(":/images/add-document.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionNew_canvas->setIcon(icon17);
+        actionExperimental_1 = new QAction(MainWindow);
+        actionExperimental_1->setObjectName(QString::fromUtf8("actionExperimental_1"));
+        actionExperimental_2 = new QAction(MainWindow);
+        actionExperimental_2->setObjectName(QString::fromUtf8("actionExperimental_2"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         centralwidget->setMouseTracking(false);
+        thicknessWidget = new QWidget(centralwidget);
+        thicknessWidget->setObjectName(QString::fromUtf8("thicknessWidget"));
+        thicknessWidget->setEnabled(true);
+        thicknessWidget->setGeometry(QRect(240, 190, 271, 141));
+        thicknessWidget->setStyleSheet(QString::fromUtf8("QWidget#thicknessWidget {\n"
+"background-color: rgb(241, 241, 241);\n"
+"border-radius: 5px;\n"
+"border: 1px solid rgb(154, 153, 150);\n"
+"}"));
+        thickness_spinBox = new QSpinBox(thicknessWidget);
+        thickness_spinBox->setObjectName(QString::fromUtf8("thickness_spinBox"));
+        thickness_spinBox->setGeometry(QRect(110, 50, 45, 24));
+        thickness_spinBox->setStyleSheet(QString::fromUtf8(""));
+        thickness_spinBox->setMinimum(1);
+        thickness_label = new QLabel(thicknessWidget);
+        thickness_label->setObjectName(QString::fromUtf8("thickness_label"));
+        thickness_label->setEnabled(true);
+        thickness_label->setGeometry(QRect(70, 10, 131, 20));
+        QFont font;
+        font.setFamilies({QString::fromUtf8("Ubuntu")});
+        font.setPointSize(12);
+        font.setBold(false);
+        thickness_label->setFont(font);
+        thickness_label->setAutoFillBackground(false);
+        thickness_pushButton = new QPushButton(thicknessWidget);
+        thickness_pushButton->setObjectName(QString::fromUtf8("thickness_pushButton"));
+        thickness_pushButton->setGeometry(QRect(90, 100, 83, 24));
+        pathWidget = new QWidget(centralwidget);
+        pathWidget->setObjectName(QString::fromUtf8("pathWidget"));
+        pathWidget->setGeometry(QRect(230, 190, 291, 141));
+        pathWidget->setStyleSheet(QString::fromUtf8("QWidget#pathWidget {\n"
+"background-color: rgb(241, 241, 241);\n"
+"border-radius: 5px;\n"
+"border: 1px solid rgb(154, 153, 150);\n"
+"}"));
+        path_label = new QLabel(pathWidget);
+        path_label->setObjectName(QString::fromUtf8("path_label"));
+        path_label->setEnabled(true);
+        path_label->setGeometry(QRect(20, 10, 251, 20));
+        path_label->setFont(font);
+        path_label->setAutoFillBackground(false);
+        path_pushButton = new QPushButton(pathWidget);
+        path_pushButton->setObjectName(QString::fromUtf8("path_pushButton"));
+        path_pushButton->setGeometry(QRect(100, 100, 83, 24));
+        path_lineEdit = new QLineEdit(pathWidget);
+        path_lineEdit->setObjectName(QString::fromUtf8("path_lineEdit"));
+        path_lineEdit->setGeometry(QRect(20, 50, 251, 23));
+        filenameWidget = new QWidget(centralwidget);
+        filenameWidget->setObjectName(QString::fromUtf8("filenameWidget"));
+        filenameWidget->setGeometry(QRect(230, 190, 291, 141));
+        filenameWidget->setStyleSheet(QString::fromUtf8("QWidget#filenameWidget {\n"
+"background-color: rgb(241, 241, 241);\n"
+"border-radius: 5px;\n"
+"border: 1px solid rgb(154, 153, 150);\n"
+"}"));
+        filename_label = new QLabel(filenameWidget);
+        filename_label->setObjectName(QString::fromUtf8("filename_label"));
+        filename_label->setEnabled(true);
+        filename_label->setGeometry(QRect(20, 10, 251, 20));
+        filename_label->setFont(font);
+        filename_label->setAutoFillBackground(false);
+        filename_pushButton = new QPushButton(filenameWidget);
+        filename_pushButton->setObjectName(QString::fromUtf8("filename_pushButton"));
+        filename_pushButton->setGeometry(QRect(100, 100, 83, 24));
+        filename_lineEdit = new QLineEdit(filenameWidget);
+        filename_lineEdit->setObjectName(QString::fromUtf8("filename_lineEdit"));
+        filename_lineEdit->setGeometry(QRect(20, 50, 251, 23));
+        canvasSizeWidget = new QWidget(centralwidget);
+        canvasSizeWidget->setObjectName(QString::fromUtf8("canvasSizeWidget"));
+        canvasSizeWidget->setGeometry(QRect(230, 190, 291, 141));
+        canvasSizeWidget->setStyleSheet(QString::fromUtf8("QWidget#canvasSizeWidget {\n"
+"background-color: rgb(241, 241, 241);\n"
+"border-radius: 5px;\n"
+"border: 1px solid rgb(154, 153, 150);\n"
+"}"));
+        canvasSize_label = new QLabel(canvasSizeWidget);
+        canvasSize_label->setObjectName(QString::fromUtf8("canvasSize_label"));
+        canvasSize_label->setEnabled(true);
+        canvasSize_label->setGeometry(QRect(20, 10, 251, 20));
+        canvasSize_label->setFont(font);
+        canvasSize_label->setAutoFillBackground(false);
+        canvasSize_pushButton = new QPushButton(canvasSizeWidget);
+        canvasSize_pushButton->setObjectName(QString::fromUtf8("canvasSize_pushButton"));
+        canvasSize_pushButton->setGeometry(QRect(100, 100, 83, 24));
+        width_spinBox = new QSpinBox(canvasSizeWidget);
+        width_spinBox->setObjectName(QString::fromUtf8("width_spinBox"));
+        width_spinBox->setGeometry(QRect(80, 50, 51, 24));
+        width_spinBox->setMinimum(1);
+        width_spinBox->setMaximum(1000);
+        height_spinBox = new QSpinBox(canvasSizeWidget);
+        height_spinBox->setObjectName(QString::fromUtf8("height_spinBox"));
+        height_spinBox->setGeometry(QRect(210, 50, 51, 24));
+        height_spinBox->setMinimum(1);
+        height_spinBox->setMaximum(1000);
+        height_label = new QLabel(canvasSizeWidget);
+        height_label->setObjectName(QString::fromUtf8("height_label"));
+        height_label->setEnabled(true);
+        height_label->setGeometry(QRect(150, 47, 60, 30));
+        height_label->setFont(font);
+        height_label->setAutoFillBackground(false);
+        width_label = new QLabel(canvasSizeWidget);
+        width_label->setObjectName(QString::fromUtf8("width_label"));
+        width_label->setEnabled(true);
+        width_label->setGeometry(QRect(20, 47, 60, 30));
+        width_label->setFont(font);
+        width_label->setAutoFillBackground(false);
+        geometryWidget = new QWidget(centralwidget);
+        geometryWidget->setObjectName(QString::fromUtf8("geometryWidget"));
+        geometryWidget->setGeometry(QRect(230, 190, 291, 141));
+        geometryWidget->setStyleSheet(QString::fromUtf8("QWidget#geometryWidget {\n"
+"background-color: rgb(241, 241, 241);\n"
+"border-radius: 5px;\n"
+"border: 1px solid rgb(154, 153, 150);\n"
+"}"));
+        geometry_label = new QLabel(geometryWidget);
+        geometry_label->setObjectName(QString::fromUtf8("geometry_label"));
+        geometry_label->setEnabled(true);
+        geometry_label->setGeometry(QRect(10, 10, 271, 20));
+        geometry_label->setFont(font);
+        geometry_label->setAutoFillBackground(false);
+        geometry_pushButton = new QPushButton(geometryWidget);
+        geometry_pushButton->setObjectName(QString::fromUtf8("geometry_pushButton"));
+        geometry_pushButton->setGeometry(QRect(100, 100, 83, 24));
+        geometry_comboBox = new QComboBox(geometryWidget);
+        geometry_comboBox->addItem(QString());
+        geometry_comboBox->addItem(QString());
+        geometry_comboBox->addItem(QString());
+        geometry_comboBox->setObjectName(QString::fromUtf8("geometry_comboBox"));
+        geometry_comboBox->setGeometry(QRect(70, 50, 141, 24));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -182,12 +364,15 @@ public:
         menubar->addAction(menuFile->menuAction());
         menubar->addAction(menuEdit->menuAction());
         menubar->addAction(menuView->menuAction());
+        menuFile->addAction(actionNew_canvas);
         menuFile->addAction(actionOpen);
         menuFile->addAction(actionExport);
         menuFile->addSeparator();
         menuFile->addAction(menuFilters->menuAction());
         menuFilters->addAction(actionGrayscale);
         menuFilters->addAction(actionNegative);
+        menuFilters->addAction(actionExperimental_1);
+        menuFilters->addAction(actionExperimental_2);
         menuEdit->addAction(actionUndo);
         menuEdit->addAction(actionRedo);
         menuView->addAction(actionZoomIn);
@@ -206,7 +391,10 @@ public:
         toolBar->addAction(actionColorPicker);
         toolBar->addAction(actionSelect);
         toolBar->addAction(actionmagicWand);
+        toolBar->addAction(actionGeometry);
+        toolBar->addSeparator();
         toolBar->addAction(actionColor_Palette);
+        toolBar->addAction(actionThickness);
         toolBar->addSeparator();
         toolBar->addAction(actionZoomIn);
         toolBar->addAction(actionZoomOut);
@@ -271,6 +459,27 @@ public:
 #if QT_CONFIG(shortcut)
         actionScroll_Right->setShortcut(QCoreApplication::translate("MainWindow", "Right", nullptr));
 #endif // QT_CONFIG(shortcut)
+        actionThickness->setText(QCoreApplication::translate("MainWindow", "Thickness", nullptr));
+        actionGeometry->setText(QCoreApplication::translate("MainWindow", "Geometry", nullptr));
+        actionNew_canvas->setText(QCoreApplication::translate("MainWindow", "New canvas", nullptr));
+        actionExperimental_1->setText(QCoreApplication::translate("MainWindow", "Experimental 1", nullptr));
+        actionExperimental_2->setText(QCoreApplication::translate("MainWindow", "Experimental 2", nullptr));
+        thickness_label->setText(QCoreApplication::translate("MainWindow", "Choose thickness:", nullptr));
+        thickness_pushButton->setText(QCoreApplication::translate("MainWindow", "Okay", nullptr));
+        path_label->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\">Write filepath:</p></body></html>", nullptr));
+        path_pushButton->setText(QCoreApplication::translate("MainWindow", "Okay", nullptr));
+        filename_label->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\">Write file name:</p></body></html>", nullptr));
+        filename_pushButton->setText(QCoreApplication::translate("MainWindow", "Okay", nullptr));
+        canvasSize_label->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\">Write canvas size:</p></body></html>", nullptr));
+        canvasSize_pushButton->setText(QCoreApplication::translate("MainWindow", "Okay", nullptr));
+        height_label->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\">Height:</p></body></html>", nullptr));
+        width_label->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\">Width:</p></body></html>", nullptr));
+        geometry_label->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\">Select figure:</p></body></html>", nullptr));
+        geometry_pushButton->setText(QCoreApplication::translate("MainWindow", "Okay", nullptr));
+        geometry_comboBox->setItemText(0, QCoreApplication::translate("MainWindow", "Rectangle", nullptr));
+        geometry_comboBox->setItemText(1, QCoreApplication::translate("MainWindow", "Triangle", nullptr));
+        geometry_comboBox->setItemText(2, QCoreApplication::translate("MainWindow", "Circle", nullptr));
+
         menuFile->setTitle(QCoreApplication::translate("MainWindow", "File", nullptr));
         menuFilters->setTitle(QCoreApplication::translate("MainWindow", "Filters", nullptr));
         menuEdit->setTitle(QCoreApplication::translate("MainWindow", "Edit", nullptr));

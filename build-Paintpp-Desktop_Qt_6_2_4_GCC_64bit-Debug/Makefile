@@ -53,14 +53,14 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = ../Paintpp/BmpImage.cpp \
-		../Paintpp/Filters.cpp \
+		../Paintpp/Graphics.cpp \
 		../Paintpp/Stack.cpp \
 		../Paintpp/main.cpp \
 		../Paintpp/mainwindow.cpp \
 		../Paintpp/rgbMatrix.cpp qrc_images.cpp \
 		moc_mainwindow.cpp
 OBJECTS       = BmpImage.o \
-		Filters.o \
+		Graphics.o \
 		Stack.o \
 		main.o \
 		mainwindow.o \
@@ -78,6 +78,7 @@ DIST          = ../Paintpp/images/acercarse.png \
 		../Paintpp/images/feather.png \
 		../Paintpp/images/fill.png \
 		../Paintpp/images/lapiz.png \
+		../Paintpp/images/palette.png \
 		../Paintpp/images/pencil.png \
 		../Paintpp/images/redo.png \
 		../Paintpp/images/rotate.png \
@@ -337,11 +338,11 @@ DIST          = ../Paintpp/images/acercarse.png \
 		../../../Qt/6.2.4/gcc_64/mkspecs/features/yacc.prf \
 		../../../Qt/6.2.4/gcc_64/mkspecs/features/lex.prf \
 		../Paintpp/Paintpp.pro ../Paintpp/BmpImage.h \
-		../Paintpp/Filters.h \
+		../Paintpp/Graphics.h \
 		../Paintpp/Stack.h \
 		../Paintpp/mainwindow.h \
 		../Paintpp/rgbMatrix.h ../Paintpp/BmpImage.cpp \
-		../Paintpp/Filters.cpp \
+		../Paintpp/Graphics.cpp \
 		../Paintpp/Stack.cpp \
 		../Paintpp/main.cpp \
 		../Paintpp/mainwindow.cpp \
@@ -884,10 +885,10 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../Paintpp/images.qrc ../Paintpp/images.qrc $(DISTDIR)/
+	$(COPY_FILE) --parents ../Paintpp/images.qrc ../Paintpp/images.qrc ../Paintpp/images.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents ../../../Qt/6.2.4/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../Paintpp/BmpImage.h ../Paintpp/Filters.h ../Paintpp/Stack.h ../Paintpp/mainwindow.h ../Paintpp/rgbMatrix.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../Paintpp/BmpImage.cpp ../Paintpp/Filters.cpp ../Paintpp/Stack.cpp ../Paintpp/main.cpp ../Paintpp/mainwindow.cpp ../Paintpp/rgbMatrix.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../Paintpp/BmpImage.h ../Paintpp/Graphics.h ../Paintpp/Stack.h ../Paintpp/mainwindow.h ../Paintpp/rgbMatrix.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../Paintpp/BmpImage.cpp ../Paintpp/Graphics.cpp ../Paintpp/Stack.cpp ../Paintpp/main.cpp ../Paintpp/mainwindow.cpp ../Paintpp/rgbMatrix.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../Paintpp/mainwindow.ui $(DISTDIR)/
 
 
@@ -912,14 +913,16 @@ check: first
 
 benchmark: first
 
-compiler_rcc_make_all: qrc_images.cpp qrc_images.cpp
+compiler_rcc_make_all: qrc_images.cpp qrc_images.cpp qrc_images.cpp
 compiler_rcc_clean:
-	-$(DEL_FILE) qrc_images.cpp qrc_images.cpp
+	-$(DEL_FILE) qrc_images.cpp qrc_images.cpp qrc_images.cpp
 qrc_images.cpp: ../Paintpp/images.qrc \
 		../../../Qt/6.2.4/gcc_64/libexec/rcc \
 		../Paintpp/images/redo.png \
+		../Paintpp/images/line-width.png \
 		../Paintpp/images/edit-alt.png \
 		../Paintpp/images/lapiz.png \
+		../Paintpp/images/folder.png \
 		../Paintpp/images/expandir.png \
 		../Paintpp/images/add-document.png \
 		../Paintpp/images/palette.png \
@@ -932,6 +935,7 @@ qrc_images.cpp: ../Paintpp/images.qrc \
 		../Paintpp/images/feather.png \
 		../Paintpp/images/pencil.png \
 		../Paintpp/images/escoba.png \
+		../Paintpp/images/resources.png \
 		../Paintpp/images/rotate.png \
 		../Paintpp/images/varita-magica.png \
 		../Paintpp/images/eye-dropper.png
@@ -940,8 +944,10 @@ qrc_images.cpp: ../Paintpp/images.qrc \
 qrc_images.cpp: ../Paintpp/images.qrc \
 		../../../Qt/6.2.4/gcc_64/libexec/rcc \
 		../Paintpp/images/redo.png \
+		../Paintpp/images/line-width.png \
 		../Paintpp/images/edit-alt.png \
 		../Paintpp/images/lapiz.png \
+		../Paintpp/images/folder.png \
 		../Paintpp/images/expandir.png \
 		../Paintpp/images/add-document.png \
 		../Paintpp/images/palette.png \
@@ -954,6 +960,32 @@ qrc_images.cpp: ../Paintpp/images.qrc \
 		../Paintpp/images/feather.png \
 		../Paintpp/images/pencil.png \
 		../Paintpp/images/escoba.png \
+		../Paintpp/images/resources.png \
+		../Paintpp/images/rotate.png \
+		../Paintpp/images/varita-magica.png \
+		../Paintpp/images/eye-dropper.png
+	/home/danielcob/Qt/6.2.4/gcc_64/libexec/rcc -name images ../Paintpp/images.qrc -o qrc_images.cpp
+
+qrc_images.cpp: ../Paintpp/images.qrc \
+		../../../Qt/6.2.4/gcc_64/libexec/rcc \
+		../Paintpp/images/redo.png \
+		../Paintpp/images/line-width.png \
+		../Paintpp/images/edit-alt.png \
+		../Paintpp/images/lapiz.png \
+		../Paintpp/images/folder.png \
+		../Paintpp/images/expandir.png \
+		../Paintpp/images/add-document.png \
+		../Paintpp/images/palette.png \
+		../Paintpp/images/acercarse.png \
+		../Paintpp/images/undo.png \
+		../Paintpp/images/search.png \
+		../Paintpp/images/fill.png \
+		../Paintpp/images/disminuir-el-zoom.png \
+		../Paintpp/images/disk.png \
+		../Paintpp/images/feather.png \
+		../Paintpp/images/pencil.png \
+		../Paintpp/images/escoba.png \
+		../Paintpp/images/resources.png \
 		../Paintpp/images/rotate.png \
 		../Paintpp/images/varita-magica.png \
 		../Paintpp/images/eye-dropper.png
@@ -1131,9 +1163,9 @@ compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_heade
 BmpImage.o: ../Paintpp/BmpImage.cpp ../Paintpp/BmpImage.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o BmpImage.o ../Paintpp/BmpImage.cpp
 
-Filters.o: ../Paintpp/Filters.cpp ../Paintpp/Filters.h \
+Graphics.o: ../Paintpp/Graphics.cpp ../Paintpp/Graphics.h \
 		../Paintpp/rgbMatrix.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Filters.o ../Paintpp/Filters.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Graphics.o ../Paintpp/Graphics.cpp
 
 Stack.o: ../Paintpp/Stack.cpp ../Paintpp/Stack.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Stack.o ../Paintpp/Stack.cpp
@@ -1460,17 +1492,34 @@ mainwindow.o: ../Paintpp/mainwindow.cpp ../../../Qt/6.2.4/gcc_64/include/QtGui/Q
 		../../../Qt/6.2.4/gcc_64/include/QtGui/qinputmethod.h \
 		../../../Qt/6.2.4/gcc_64/include/QtCore/qlocale.h \
 		../../../Qt/6.2.4/gcc_64/include/QtGui/qguiapplication_platform.h \
+		../../../Qt/6.2.4/gcc_64/include/QtWidgets/QLabel \
+		../../../Qt/6.2.4/gcc_64/include/QtWidgets/qlabel.h \
+		../../../Qt/6.2.4/gcc_64/include/QtWidgets/qframe.h \
+		../../../Qt/6.2.4/gcc_64/include/QtGui/qpicture.h \
+		../../../Qt/6.2.4/gcc_64/include/QtGui/qtextdocument.h \
+		../../../Qt/6.2.4/gcc_64/include/QtWidgets/QLineEdit \
+		../../../Qt/6.2.4/gcc_64/include/QtWidgets/qlineedit.h \
+		../../../Qt/6.2.4/gcc_64/include/QtGui/qtextcursor.h \
+		../../../Qt/6.2.4/gcc_64/include/QtGui/qtextformat.h \
 		../../../Qt/6.2.4/gcc_64/include/QtWidgets/QMenu \
 		../../../Qt/6.2.4/gcc_64/include/QtWidgets/qmenu.h \
 		../../../Qt/6.2.4/gcc_64/include/QtWidgets/QMenuBar \
 		../../../Qt/6.2.4/gcc_64/include/QtWidgets/qmenubar.h \
+		../../../Qt/6.2.4/gcc_64/include/QtWidgets/QPushButton \
+		../../../Qt/6.2.4/gcc_64/include/QtWidgets/qpushbutton.h \
+		../../../Qt/6.2.4/gcc_64/include/QtWidgets/qabstractbutton.h \
+		../../../Qt/6.2.4/gcc_64/include/QtWidgets/QSpinBox \
+		../../../Qt/6.2.4/gcc_64/include/QtWidgets/qspinbox.h \
+		../../../Qt/6.2.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		../../../Qt/6.2.4/gcc_64/include/QtGui/qvalidator.h \
+		../../../Qt/6.2.4/gcc_64/include/QtCore/qregularexpression.h \
 		../../../Qt/6.2.4/gcc_64/include/QtWidgets/QStatusBar \
 		../../../Qt/6.2.4/gcc_64/include/QtWidgets/qstatusbar.h \
 		../../../Qt/6.2.4/gcc_64/include/QtWidgets/QToolBar \
 		../../../Qt/6.2.4/gcc_64/include/QtWidgets/qtoolbar.h \
 		../../../Qt/6.2.4/gcc_64/include/QtWidgets/QWidget \
 		../Paintpp/BmpImage.h \
-		../Paintpp/Filters.h \
+		../Paintpp/Graphics.h \
 		../Paintpp/Stack.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../Paintpp/mainwindow.cpp
 

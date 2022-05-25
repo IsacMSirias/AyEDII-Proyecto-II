@@ -17,6 +17,434 @@
    <property name="mouseTracking">
     <bool>false</bool>
    </property>
+   <widget class="QWidget" name="thicknessWidget" native="true">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>190</y>
+      <width>271</width>
+      <height>141</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QWidget#thicknessWidget {
+background-color: rgb(241, 241, 241);
+border-radius: 5px;
+border: 1px solid rgb(154, 153, 150);
+}</string>
+    </property>
+    <widget class="QSpinBox" name="thickness_spinBox">
+     <property name="geometry">
+      <rect>
+       <x>110</x>
+       <y>50</y>
+       <width>45</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="minimum">
+      <number>1</number>
+     </property>
+    </widget>
+    <widget class="QLabel" name="thickness_label">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>10</y>
+       <width>131</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Ubuntu</family>
+       <pointsize>12</pointsize>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>Choose thickness:</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="thickness_pushButton">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>100</y>
+       <width>83</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Okay</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="pathWidget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>190</y>
+      <width>291</width>
+      <height>141</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QWidget#pathWidget {
+background-color: rgb(241, 241, 241);
+border-radius: 5px;
+border: 1px solid rgb(154, 153, 150);
+}</string>
+    </property>
+    <widget class="QLabel" name="path_label">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>10</y>
+       <width>251</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Ubuntu</family>
+       <pointsize>12</pointsize>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Write filepath:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="path_pushButton">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>100</y>
+       <width>83</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Okay</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="path_lineEdit">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>50</y>
+       <width>251</width>
+       <height>23</height>
+      </rect>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="filenameWidget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>190</y>
+      <width>291</width>
+      <height>141</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QWidget#filenameWidget {
+background-color: rgb(241, 241, 241);
+border-radius: 5px;
+border: 1px solid rgb(154, 153, 150);
+}</string>
+    </property>
+    <widget class="QLabel" name="filename_label">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>10</y>
+       <width>251</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Ubuntu</family>
+       <pointsize>12</pointsize>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Write file name:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="filename_pushButton">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>100</y>
+       <width>83</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Okay</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="filename_lineEdit">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>50</y>
+       <width>251</width>
+       <height>23</height>
+      </rect>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="canvasSizeWidget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>190</y>
+      <width>291</width>
+      <height>141</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QWidget#canvasSizeWidget {
+background-color: rgb(241, 241, 241);
+border-radius: 5px;
+border: 1px solid rgb(154, 153, 150);
+}</string>
+    </property>
+    <widget class="QLabel" name="canvasSize_label">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>10</y>
+       <width>251</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Ubuntu</family>
+       <pointsize>12</pointsize>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Write canvas size:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="canvasSize_pushButton">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>100</y>
+       <width>83</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Okay</string>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="width_spinBox">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>50</y>
+       <width>51</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="minimum">
+      <number>1</number>
+     </property>
+     <property name="maximum">
+      <number>1000</number>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="height_spinBox">
+     <property name="geometry">
+      <rect>
+       <x>210</x>
+       <y>50</y>
+       <width>51</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="minimum">
+      <number>1</number>
+     </property>
+     <property name="maximum">
+      <number>1000</number>
+     </property>
+    </widget>
+    <widget class="QLabel" name="height_label">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>150</x>
+       <y>47</y>
+       <width>60</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Ubuntu</family>
+       <pointsize>12</pointsize>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Height:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="width_label">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>47</y>
+       <width>60</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Ubuntu</family>
+       <pointsize>12</pointsize>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Width:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="geometryWidget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>190</y>
+      <width>291</width>
+      <height>141</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QWidget#geometryWidget {
+background-color: rgb(241, 241, 241);
+border-radius: 5px;
+border: 1px solid rgb(154, 153, 150);
+}</string>
+    </property>
+    <widget class="QLabel" name="geometry_label">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>271</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Ubuntu</family>
+       <pointsize>12</pointsize>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Select figure:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="geometry_pushButton">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>100</y>
+       <width>83</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Okay</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="geometry_comboBox">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>50</y>
+       <width>141</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <item>
+      <property name="text">
+       <string>Rectangle</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Triangle</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Circle</string>
+      </property>
+     </item>
+    </widget>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -37,7 +465,10 @@
      </property>
      <addaction name="actionGrayscale"/>
      <addaction name="actionNegative"/>
+     <addaction name="actionExperimental_1"/>
+     <addaction name="actionExperimental_2"/>
     </widget>
+    <addaction name="actionNew_canvas"/>
     <addaction name="actionOpen"/>
     <addaction name="actionExport"/>
     <addaction name="separator"/>
@@ -86,7 +517,10 @@
    <addaction name="actionColorPicker"/>
    <addaction name="actionSelect"/>
    <addaction name="actionmagicWand"/>
+   <addaction name="actionGeometry"/>
+   <addaction name="separator"/>
    <addaction name="actionColor_Palette"/>
+   <addaction name="actionThickness"/>
    <addaction name="separator"/>
    <addaction name="actionZoomIn"/>
    <addaction name="actionZoomOut"/>
@@ -101,7 +535,7 @@
    </property>
    <property name="icon">
     <iconset resource="images.qrc">
-     <normaloff>:/images/add-document.png</normaloff>:/images/add-document.png</iconset>
+     <normaloff>:/images/folder.png</normaloff>:/images/folder.png</iconset>
    </property>
    <property name="text">
     <string>Open</string>
@@ -315,6 +749,46 @@
    </property>
    <property name="shortcut">
     <string>Right</string>
+   </property>
+  </action>
+  <action name="actionThickness">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/line-width.png</normaloff>:/images/line-width.png</iconset>
+   </property>
+   <property name="text">
+    <string>Thickness</string>
+   </property>
+  </action>
+  <action name="actionGeometry">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/resources.png</normaloff>:/images/resources.png</iconset>
+   </property>
+   <property name="text">
+    <string>Geometry</string>
+   </property>
+  </action>
+  <action name="actionNew_canvas">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/add-document.png</normaloff>:/images/add-document.png</iconset>
+   </property>
+   <property name="text">
+    <string>New canvas</string>
+   </property>
+  </action>
+  <action name="actionExperimental_1">
+   <property name="text">
+    <string>Experimental 1</string>
+   </property>
+  </action>
+  <action name="actionExperimental_2">
+   <property name="text">
+    <string>Experimental 2</string>
    </property>
   </action>
  </widget>
