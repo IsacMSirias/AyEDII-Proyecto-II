@@ -109,3 +109,60 @@ void Graphics::paintFill(const rgbColor &colorPicked, const rgbColor &selectedCo
         }
     }
 }
+
+void Graphics::triangle(const rgbColor &rgbcolor, int initial_x, int initial_y, int final_x, 
+                                                int final_y, int thickness, rgbMatrix matrix)
+{
+    int dx = (final_x - initial_x) / 2;
+    draw_WhitPen(rgbcolor, initial_y, initial_x + dx, final_y, final_x, thickness, matrix);
+    draw_WhitPen(rgbcolor, initial_y, initial_x + dx, final_y, initial_x, thickness, matrix);
+    draw_WhitPen(rgbcolor, final_y, initial_x, final_y, final_x, thickness, matrix);
+}
+
+
+void Graphics::square(const rgbColor &rgbcolor, int initial_x, int initial_y, int final_x, 
+                                            int final_y, int thickness,rgbMatrix matrix){
+    int dx = (final_x - initial_x);
+    int dy = (final_y - initial_y);
+    int X_length = min(abs(dx), abs(dy));
+    int Y_length = X_length;
+        if (dx < 0){
+            X_length = (X_length * -1);
+             }
+            if (dy < 0){
+                Y_length = (Y_length * -1);
+              }
+                draw_WhitPen(rgbcolor, initial_y, initial_x, initial_y, initial_x + X_length, thickness, matrix);
+                draw_WhitPen(rgbcolor, initial_y, initial_x, initial_x + Y_length, initial_x, thickness, matrix);
+                draw_WhitPen(rgbcolor, initial_y + Y_length, initial_x, initial_y + Y_length, initial_x + X_length, thickness, matrix);
+                draw_WhitPen(rgbcolor, initial_y, initial_x + X_length, initial_y + Y_length, initial_x + X_length, thickness, matrix);
+}
+
+void Graphics::elipse(const rgbColor &rgbcolor, int initial_x, int initial_y, 
+                                int final_x, int final_y, rgbMatrix matrix){   
+
+    int x = min(initial_x,final_x); int y = min(initial_y,final_y);
+    int dx = abs(final_x- initial_x);int dy = abs(final_y-initial_y); 
+    int covertice = x + dx/2; int vertice = y + dy/2;
+    int Eje_Menor = dx*dx/4; int Eje_Mayor = dy*dy/4;
+
+    for (float focus = (float)x; focus <= x + dx; focus+=0.001){
+        
+        float centerInitial_y = (float)sqrt((1-(float)((focus-covertice)*(focus-covertice))/Eje_Menor)*Eje_Mayor)+vertice;
+        float centerFinal_y = -1*(float)sqrt((1-(float)((focus-covertice)*(focus-covertice))/Eje_Menor)*Eje_Mayor)+vertice;
+            matrix.setColor(rgbcolor, centerInitial_y, focus);
+            matrix.setColor(rgbcolor, centerFinal_y, focus);
+    }
+    
+        
+}
+
+void Graphics::circle(const rgbColor &rgbcolor, int initial_x, int initial_y, int final_x, int final_y, rgbMatrix matrix) {
+    
+    int dx = (final_x-initial_x); int dy = (final_y-initial_y);
+    int lenght = min(abs(dx),abs(dy));
+    int horizontalDiameter= min(initial_x,final_x); int  verticalDiameter = min(initial_y,final_y);
+    int new_x = horizontalDiameter + lenght;
+    int new_y = verticalDiameter + lenght;
+        elipse(rgbcolor,horizontalDiameter,verticalDiameter,new_x,new_y, matrix);
+}
