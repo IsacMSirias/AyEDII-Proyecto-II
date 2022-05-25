@@ -95,6 +95,44 @@ void Graphics:: negativeFilter(rgbMatrix matrix){
     std::cout<< "Negative Filter aply"<< std::endl;
 }
 
+void Graphics:: experimentalFilter1(rgbMatrix matrix){
+
+    for (int x = 0; x < matrix.get_Height(); x++){
+
+        for (int y = 0; y < matrix.get_Width(); y++){
+
+            rgbColor tempRGB =  matrix.getColor(x,y);
+            float new_R = 111 - tempRGB.r;
+            float new_G = 222 + tempRGB.g;
+            float new_B = 111 - tempRGB.b;
+            matrix.setColor(rgbColor(new_R, new_G, new_B), x, y);
+        }
+        
+    }
+    
+    std::cout<< "extra  Filter aply"<< std::endl;
+}
+
+
+void Graphics:: experimentalFilter2(rgbMatrix matrix){
+
+    for (int x = 0; x < matrix.get_Height(); x++){
+
+        for (int y = 0; y < matrix.get_Width(); y++){
+
+            rgbColor tempRGB =  matrix.getColor(x,y);
+            float new_R = 111* tempRGB.r;
+            float new_G = 222*tempRGB.g;
+            float new_B = 111*tempRGB.b;
+            matrix.setColor(rgbColor(new_R, new_G, new_B), x, y);
+        }
+        
+    }
+    
+    std::cout<< "extra  Filter aply"<< std::endl;
+}\
+
+
 void Graphics::paintFill(const rgbColor &colorPicked, const rgbColor &selectedColor, int x, int y, rgbMatrix matrix){
 
     if(x < matrix.get_Width() && y < matrix.get_Height() && x >= 0 && y >= 0){
