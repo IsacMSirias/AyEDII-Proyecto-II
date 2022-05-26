@@ -20,12 +20,13 @@ int main() {
 
 	rgb->whiteCanvas();
 
-	//graphics->draw_WhitPen(rgbColor(111,222, 111), 80,60, 40, 22, 1, *rgb);
+	graphics->draw_WithPen(rgbColor(111,222, 111), 80,60, 40, 22, 1, *rgb);
 	
-	graphics->draw_WhitPen(rgbColor(0, 0, 0), 10, 10, 200, 200, 4, *rgb);
+	graphics->draw_WithPen(rgbColor(0, 0, 0), 10, 10, 200, 200, 4, *rgb);
 	graphics->triangle(rgbColor(0,0,0),20,20, 299,300, 2, *rgb);
 	graphics->square(rgbColor(111,222,111), 10,10, 190, 190, 2, *rgb);
-	graphics->circle(rgbColor(0, 0, 255), 100, 100, 300, 300, *rgb);
+	
+	graphics->circle(rgbColor(111,222,111), 250, 100, 300, 100, 2, *rgb);
 
 	rgb->CreateRgbArray();
 
