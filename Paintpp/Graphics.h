@@ -20,6 +20,7 @@ public:
     void experimentalFilter2(rgbMatrix matrix);
     void triangle (const rgbColor &rgbColor, int initial_x,  int initial_y, int final_x, int final_y,int thickness, rgbMatrix rgbMatrix);
     void square(const rgbColor &rgbcolor, int initial_x, int initial_y, int final_x, int final_y, int thickness, rgbMatrix matrix);
+    void squareFill(const rgbColor &rgbcolor, int initial_x, int initial_y, int final_x, int final_y, rgbMatrix matrix);
     void circle (const rgbColor &rgbColor, int initial_x, int initial_y, int final_x, int final_y, int thickness, rgbMatrix matrix);
 };
 

@@ -20,6 +20,13 @@ public:
     virtual void paintEvent(QPaintEvent *event);
 
 private slots:
+
+    int calculateRelativePosX (int x);
+
+    int calculateRelativePosY (int y);
+
+    bool inBounds(int x, int y);
+
     void on_actionOpen_triggered();
 
     void on_actionExport_triggered();

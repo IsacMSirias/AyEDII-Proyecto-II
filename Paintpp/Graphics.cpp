@@ -170,6 +170,15 @@ void Graphics::square(const rgbColor &rgbcolor, int initial_x, int initial_y, in
     draw_WithPen(rgbcolor, final_y, initial_x, final_y, final_x, thickness, matrix);
 }
 
+void Graphics::squareFill(const rgbColor &rgbcolor, int initial_x, int initial_y, int final_x, int final_y, rgbMatrix matrix)
+{
+    for (int i = initial_y; i <= final_y; i++){
+        for (int j = initial_x; j <= final_x; j++){
+            matrix.setColor(rgbcolor, i, j);
+        }
+    }
+}
+
 void Graphics::circle(const rgbColor &rgbcolor, int initial_x, int initial_y,
                                 int final_x, int final_y, int thickness, rgbMatrix matrix)
 {

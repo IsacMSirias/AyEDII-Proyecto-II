@@ -35,7 +35,6 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-
 void MainWindow::paintEvent(QPaintEvent *event)
 {
     QPainter painter(this);
@@ -55,23 +54,36 @@ void MainWindow::paintEvent(QPaintEvent *event)
 }
 
 
+int MainWindow::calculateRelativePosX (int x) {
+    return (x-10-scrollX)/zoomSize;
+}
+
+
+int MainWindow::calculateRelativePosY (int y) {
+    return (y-ui->menubar->height()-10-scrollY)/zoomSize;
+}
+
+bool MainWindow::inBounds(int x, int y) {
+    if (x < imgMatrix->get_Width() && y < imgMatrix->get_Height() && 0 <= x && 0 <= y) {
+        return true;
+    }
+    return false;
+}
+
 void MainWindow::on_actionOpen_triggered()
 {
     ui->pathWidget->show();
 }
-
 
 void MainWindow::on_actionExport_triggered()
 {
     ui->filenameWidget->show();
 }
 
-
 void MainWindow::on_actionUndo_triggered()
 {
 
 }
-
 
 void MainWindow::on_actionRedo_triggered()
 {
@@ -80,71 +92,80 @@ void MainWindow::on_actionRedo_triggered()
 
 void MainWindow::mousePressEvent(QMouseEvent *event)
 {
-    if (ui->actionPencil->isChecked())
-    {
-        paint.draw_WithPencil(*selectedColor, (event->position().y()-ui->menubar->height()-10-scrollY)/zoomSize, (event->position().x()-10-scrollX)/zoomSize, thickness, *imgMatrix);
+    if (inBounds(calculateRelativePosX(event->position().x()), calculateRelativePosY(event->position().y()))) {
+        if (ui->actionPencil->isChecked())
+        {
+            paint.draw_WithPencil(*selectedColor, calculateRelativePosY(event->position().y()), calculateRelativePosX(event->position().x()), thickness, *imgMatrix);
+        }
+        else if (ui->actionEraser->isChecked())
+        {
+            paint.draw_WithPencil(eraserColor, calculateRelativePosY(event->position().y()), calculateRelativePosX(event->position().x()), thickness, *imgMatrix);
+        }
+        else if (ui->actionColorPicker->isChecked())
+        {
+            rgbColor color = imgMatrix->getColor(calculateRelativePosY(event->position().y()), calculateRelativePosX(event->position().x()));
+            selectedColor = new rgbColor(color.r, color.g, color.b);
+        }
+        else if (ui->actionFill->isChecked())
+        {
+            paint.paintFill(imgMatrix->getColor(calculateRelativePosY(event->position().y()), calculateRelativePosX(event->position().x())), *selectedColor
+                            , calculateRelativePosX(event->position().x()), calculateRelativePosY(event->position().y()), *imgMatrix);
+        }
+        else if (ui->actionmagicWand->isChecked())
+        {
+            paint.paintFill(imgMatrix->getColor(calculateRelativePosY(event->position().y()), calculateRelativePosX(event->position().x())), eraserColor
+                            , calculateRelativePosX(event->position().x()), calculateRelativePosY(event->position().y()), *imgMatrix);
+        }
+        else if (ui->actionPen->isChecked() || ui->actionGeometry->isChecked() || ui->actionSelect->isChecked())
+        {
+            posY1 = calculateRelativePosY(event->position().y());
+            posX1 = calculateRelativePosX(event->position().x());
+        }
+        update();
     }
-    if (ui->actionEraser->isChecked())
-    {
-        paint.draw_WithPencil(eraserColor, (event->position().y()-ui->menubar->height()-10-scrollY)/zoomSize, (event->position().x()-10-scrollX)/zoomSize, thickness, *imgMatrix);
-    }
-    if (ui->actionColorPicker->isChecked())
-    {
-        rgbColor color = imgMatrix->getColor((event->position().y()-ui->menubar->height()-10-scrollY)/zoomSize, (event->position().x()-10-scrollX)/zoomSize);
-        selectedColor = new rgbColor(color.r, color.g, color.b);
-    }
-    if (ui->actionFill->isChecked())
-    {
-        paint.paintFill(imgMatrix->getColor((event->position().y()-ui->menubar->height()-10-scrollY)/zoomSize, (event->position().x()-10-scrollX)/zoomSize), *selectedColor,((event->position().x()-10-scrollX)/zoomSize), ((event->position().y()-ui->menubar->height()-10-scrollY)/zoomSize), *imgMatrix);
-    }
-    if (ui->actionPen->isChecked())
-    {
-        posY1 = (event->position().y()-ui->menubar->height()-10-scrollY)/zoomSize;
-        posX1 = (event->position().x()-10-scrollX)/zoomSize;
-    }
-    if(ui->actionGeometry->isChecked())
-    {
-        posY1 = (event->position().y()-ui->menubar->height()-10-scrollY)/zoomSize;
-        posX1 = (event->position().x()-10-scrollX)/zoomSize;
-    }
-    update();
 }
 
 void MainWindow::mouseMoveEvent(QMouseEvent *event)
 {
-    if (ui->actionPencil->isChecked())
-    {
-        paint.draw_WithPencil(*selectedColor, (event->position().y()-ui->menubar->height()-10-scrollY)/zoomSize, (event->position().x()-10-scrollX)/zoomSize, thickness, *imgMatrix);
+    if (inBounds(calculateRelativePosX(event->position().x()), calculateRelativePosY(event->position().y()))) {
+        if (ui->actionPencil->isChecked())
+        {
+            paint.draw_WithPencil(*selectedColor, calculateRelativePosY(event->position().y()), calculateRelativePosX(event->position().x()), thickness, *imgMatrix);
+        }
+        else if (ui->actionEraser->isChecked())
+        {
+            paint.draw_WithPencil(eraserColor, calculateRelativePosY(event->position().y()), calculateRelativePosX(event->position().x()), thickness, *imgMatrix);
+        }
+        update();
     }
-    if (ui->actionEraser->isChecked())
-    {
-        paint.draw_WithPencil(eraserColor, (event->position().y()-ui->menubar->height()-10-scrollY)/zoomSize, (event->position().x()-10-scrollX)/zoomSize, thickness, *imgMatrix);
-    }
-    update();
 }
 
 void MainWindow::mouseReleaseEvent(QMouseEvent *event)
 {
-    if (ui->actionPen->isChecked())
-    {
-        paint.draw_WithPen(*selectedColor, posY1, posX1, ((event->position().y()-ui->menubar->height()-10-scrollY)/zoomSize), ((event->position().x()-10-scrollX)/zoomSize), thickness, *imgMatrix);
+    if (inBounds(calculateRelativePosX(event->position().x()), calculateRelativePosY(event->position().y()))) {
+        if (ui->actionPen->isChecked())
+        {
+            paint.draw_WithPen(*selectedColor, posY1, posX1, calculateRelativePosY(event->position().y()), calculateRelativePosX(event->position().x()), thickness, *imgMatrix);
+        }
+        else if(ui->actionGeometry->isChecked())
+        {
+            if (ui->geometry_comboBox->currentText() == "Rectangle")
+            {
+                paint.square(*selectedColor, posX1, posY1, calculateRelativePosX(event->position().x()), calculateRelativePosY(event->position().y()), thickness, *imgMatrix);
+            }
+            else if (ui->geometry_comboBox->currentText() == "Triangle")
+            {
+                paint.triangle(*selectedColor, posX1, posY1, calculateRelativePosX(event->position().x()), calculateRelativePosY(event->position().y()), thickness, *imgMatrix);
+            }
+            else if (ui->geometry_comboBox->currentText() == "Circle")
+            {
+                paint.circle(*selectedColor, posY1, posX1, calculateRelativePosY(event->position().y()), calculateRelativePosX(event->position().x()), thickness, *imgMatrix);
+            }
+        } else if (ui->actionSelect->isChecked()) {
+            paint.squareFill(eraserColor, posX1, posY1, calculateRelativePosX(event->position().x()), calculateRelativePosY(event->position().y()), *imgMatrix);
+        }
+        update();
     }
-    if(ui->actionGeometry->isChecked())
-    {
-        if (ui->geometry_comboBox->currentText() == "Rectangle")
-        {
-            paint.square(*selectedColor, posX1, posY1, ((event->position().x()-10-scrollX)/zoomSize), ((event->position().y()-ui->menubar->height()-10-scrollY)/zoomSize), thickness, *imgMatrix);
-        }
-        if (ui->geometry_comboBox->currentText() == "Triangle")
-        {
-            paint.triangle(*selectedColor, posX1, posY1, ((event->position().x()-10-scrollX)/zoomSize), ((event->position().y()-ui->menubar->height()-10-scrollY)/zoomSize), thickness, *imgMatrix);
-        }
-        if (ui->geometry_comboBox->currentText() == "Circle")
-        {
-            paint.circle(*selectedColor, posY1, posX1, ((event->position().y()-ui->menubar->height()-10-scrollY)/zoomSize), ((event->position().x()-10-scrollX)/zoomSize), thickness, *imgMatrix);
-        }
-    }
-    update();
 }
 
 void MainWindow::on_actionZoomIn_triggered()
