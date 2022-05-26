@@ -56,17 +56,14 @@ void BmpImage::read()
             unsigned char color[3];
             f.read(reinterpret_cast<char *>(color), 3);
             bmpPixelArray[c] = static_cast<float>(color[2]) ;
-            bmpPixelArray[c + 1] = static_cast<float>(color[1]) ;/// 255.0f;
-            bmpPixelArray[c + 2] = static_cast<float>(color[0]) ;/// 255.0f;
+            bmpPixelArray[c + 1] = static_cast<float>(color[1]) ;
+            bmpPixelArray[c + 2] = static_cast<float>(color[0]) ;
             c = c + 3;
         }
         f.ignore(paddingBytes);
     }
 
-    // for (int i = 0; i < pixelArraySize; i++)
-    // {
-    //     std::cout<<"Array["<<i<<"]"<<bmpPixelArray[i]<<std::endl;
-    // }
+    
 
     f.close();
     std::cout << "File imported read " << std::endl;
