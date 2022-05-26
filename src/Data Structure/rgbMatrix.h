@@ -37,7 +37,7 @@ public:
 
     void clearMatrix();
     rgbColor getColor(int x, int y);
-     void setColor(const rgbColor &rgbcolor, int x, int y);
+    void setColor(const rgbColor &rgbcolor, int x, int y);
     void whiteCanvas();
    
     void reflectX();

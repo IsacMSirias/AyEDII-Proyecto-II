@@ -42,7 +42,7 @@ int main() {
 
 	rgbMatrix *outImage = new rgbMatrix(imgData, fromDisc->get_Height(), fromDisc->get_Width());
 
-	graphics->experimentalFilter1(*outImage);
+	graphics->grayFilter(*outImage);
 	//graphics->paintFill(outImage->getColor(140,140), rgbColor(255,0,0), 140,140, *outImage);
 	
 	outImage->CreateRgbArray();

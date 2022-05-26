@@ -135,6 +135,11 @@ void Graphics:: experimentalFilter2(rgbMatrix matrix){
 
 void Graphics::paintFill(const rgbColor &colorPicked, const rgbColor &selectedColor, int x, int y, rgbMatrix matrix){
 
+    if(selectedColor.b == colorPicked.b && selectedColor.g == colorPicked.g && selectedColor.r == colorPicked.r){
+
+        std::cout << "No papi, asi no " << std::endl;
+    }
+
     if(x < matrix.get_Width() && y < matrix.get_Height() && x >= 0 && y >= 0){
         rgbColor currentColor = matrix.getColor(y, x);
         if(currentColor.b == colorPicked.b && currentColor.g == colorPicked.g && currentColor.r == colorPicked.r){
