@@ -1,3 +1,15 @@
+/**
+ * @file rgbMatrix.cpp
+ * @author Isac Marin Sirias, Daniel Cob Beirute, Abraham Venegaz 
+ * @brief La  presente clase tiene como funcion manejar todo lo relacionado
+ * con la generacion de una matriz de pixeles
+ * @version 0.1
+ * @date 2022-05-26
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
+
 #include "rgbMatrix.h"
 
 using namespace std;
@@ -12,7 +24,13 @@ rgbColor::rgbColor(float r, float g, float b)
 {
 }
 
-
+/**
+ * @brief Constructor que permite generar una matriz en base a un archivo externo
+ * 
+ * @param pixels_inMatrix todos los pixeles que estan dentro de la matrix
+ * @param height el alto de la matrix
+ * @param width el ancho de la matrix
+ */
 rgbMatrix::rgbMatrix(unsigned char* pixels_inMatrix, int height, int width){
     m_height = height;
     m_width = width;
@@ -22,6 +40,13 @@ rgbMatrix::rgbMatrix(unsigned char* pixels_inMatrix, int height, int width){
 
 
 }
+
+/**
+ * @brief Constructor de una nueva matriz en base a sus dimensiones
+ * 
+ * @param width ancho de la matriz
+ * @param height alto de la matriz
+ */
 rgbMatrix::rgbMatrix(int width, int height){
     m_height = height;
     m_width = width;
@@ -29,6 +54,10 @@ rgbMatrix::rgbMatrix(int width, int height){
 
 }
 
+/**
+ * @brief Metodo encargado de guardar memoria para la matriz de pixes utilizada
+ * 
+ */
 void rgbMatrix::createMatrix(){
 
     this->matrix = new rgbColor *[m_height];
@@ -48,6 +77,12 @@ int rgbMatrix::get_Width(){
     return m_width;
 }
 
+
+/**
+ * @brief Genera un arreglo unidimensional, con el fin fde que pueda ser utilizado a la hora
+ * de exportar la imagen en un archivo bmp
+ * 
+ */
 void rgbMatrix::CreateRgbArray(){
 
     
@@ -72,6 +107,12 @@ void rgbMatrix::CreateRgbArray(){
     }
 }
 
+/**
+ * @brief Metodo encargado de crear una matriz en base a la informacion proporcionada 
+ * un array que fue creado en base a un archivo binario
+ * 
+ * @param pixels_inMatrix 
+ */
 void rgbMatrix::createMatrix_fromDiscImage(unsigned char* pixels_inMatrix) {
     int m = 0;
     for (int x = m_height - 1; x >= 0; x--) {
@@ -99,6 +140,10 @@ unsigned char *rgbMatrix::get_rgbArray()
     return pixels_inMatrix;
 }
 
+/**
+ * @brief Crea un canvas blanco en la matriz
+ * 
+ */
 void rgbMatrix::whiteCanvas()
 
 {
@@ -183,13 +228,19 @@ void rgbMatrix::reflectXY(){
     matrix = newMatrix;
 }
 
-
+/**
+ * @brief metodo que se encarga de que la matriz rote a 90 grados 
+ * 
+ */
 void rgbMatrix::rotate90CW(){
     reflectXY();
 	reflectX();
 }
 
-
+/**
+ * @brief Metodo que se encarga de que la matriz rote a 180 grados.
+ * 
+ */
 void rgbMatrix::rotate180(){
     rotate90CW();
 	rotate90CW();

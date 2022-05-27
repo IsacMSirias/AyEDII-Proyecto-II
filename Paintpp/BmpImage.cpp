@@ -1,7 +1,30 @@
+/**
+ * @file BmpImage.cpp
+ * @author Isac Marin Sirias, Daniel Cob Beirute, Abraham Venegaz 
+ * @brief  La presente clase sirve para poder cargar y descargar
+ * imagenes en formato bmp, esto mediante la implementacion  de metodos
+ * capaces de exportar una matrix en base a sus medidas y a un array
+ * con la informacion del archivo de cabecera.
+ * @version 0.1
+ * @date 2022-05-26
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include "BmpImage.h"
 
 using namespace std;
 
+
+/**
+ * @brief Constructor que permite crear una imagen bmp en base a una matriz local
+ * 
+ * @param imgName nombre de la imagen
+ * @param width  ancho de la imagen
+ * @param height alto de la imagen
+ * @param pixelArray array con cada uno de los pixeles rgb encontrados en la matriz 
+ * @param pixelArraySize Cantidad de pixeles en la matrix
+ */
 BmpImage::BmpImage(std::string imgName, int width, int height, unsigned char *pixelArray, int pixelArraySize)
 {
     this->height = height;
@@ -10,12 +33,20 @@ BmpImage::BmpImage(std::string imgName, int width, int height, unsigned char *pi
 
     generateBitmapImage(imgName, pixelArraySize);
 }
-
+/**
+ * @brief Constructor que permite cargar una imagen en formato bmp y transformarla en una matrix
+ * 
+ * @param imgPath ruta de acceso de la imagen escogida
+ */
 BmpImage::BmpImage(std::string imgPath)
 {
     this->name = imgPath;
     read();
 }
+
+/**
+ * @brief lLectura de imagenes que vienen de los arvchivos
+ */
 void BmpImage::read()
 {
     std::ifstream f;
@@ -56,21 +87,25 @@ void BmpImage::read()
             unsigned char color[3];
             f.read(reinterpret_cast<char *>(color), 3);
             bmpPixelArray[c] = static_cast<float>(color[2]) ;
-            bmpPixelArray[c + 1] = static_cast<float>(color[1]) ;/// 255.0f;
-            bmpPixelArray[c + 2] = static_cast<float>(color[0]) ;/// 255.0f;
+            bmpPixelArray[c + 1] = static_cast<float>(color[1]) ;
+            bmpPixelArray[c + 2] = static_cast<float>(color[0]) ;
             c = c + 3;
         }
         f.ignore(paddingBytes);
     }
 
-    // for (int i = 0; i < pixelArraySize; i++)
-    // {
-    //     std::cout<<"Array["<<i<<"]"<<bmpPixelArray[i]<<std::endl;
-    // }
 
     f.close();
     std::cout << "File imported read " << std::endl;
 }
+
+/**
+ * @brief Metodo para generar una imagen en formato bmp, crea un archivo binario con el nombre de la imagen
+ * mediante conversiones y declaraciones crea el file header y el info header, por ultimo escribe todos los 
+ * bytes de la imagen, proporcionados por el pixel array, que contiene cada uno de los colores del pixel.
+ * @param imgName 
+ * @param pixelArraySize 
+ */
 void BmpImage::generateBitmapImage(std::string imgName, int pixelArraySize)
 {
     std::string fileName = imgName + ".bmp";
@@ -87,6 +122,12 @@ void BmpImage::generateBitmapImage(std::string imgName, int pixelArraySize)
     cout << "Bitmap Image created succesfully!" << endl;
 }
 
+/**
+ * @brief crea el header de la imagen bmp, mediante la declracion de pixeles. ya que aqui se contiene
+ * la firma del archivo, el size de la imagen, y la posicion desde donde la informacion de la imagen
+ * 
+ * @return unsigned char* datos del header de la imagen
+ */
 unsigned char *BmpImage::createBitmapFileHeader()
 {
     int fileSize = FILE_HEADER_SIZE + INFO_HEADER_SIZE + (width * height * (BITS_PER_PIXEL / 8));
@@ -103,6 +144,11 @@ unsigned char *BmpImage::createBitmapFileHeader()
     return fileHeader;
 }
 
+/**
+ * @brief Crea la informacion del header de la imagen
+ * 
+ * @return unsigned char* informacion del header de la imagen
+ */
 unsigned char *BmpImage::createBitmapInfoHeader()
 {
     int imageSize = height * width * (BITS_PER_PIXEL / 8);
@@ -121,6 +167,14 @@ unsigned char *BmpImage::createBitmapInfoHeader()
     return infoHeader;
 }
 
+/**
+ * @brief  funcion para llenar los pixeles con sus bytes correspondientes
+ * dentro del archivo
+ * 
+ * @param array 
+ * @param value 
+ * @param initByte 
+ */
 void BmpImage::fillFourBytes(unsigned char *array, int value, int initByte)
 {
     for (int i = initByte; i < initByte + 4; i++)
