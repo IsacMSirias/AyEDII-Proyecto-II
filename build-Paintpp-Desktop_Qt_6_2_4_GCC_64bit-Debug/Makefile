@@ -920,12 +920,14 @@ qrc_images.cpp: ../Paintpp/images.qrc \
 		../../../Qt/6.2.4/gcc_64/libexec/rcc \
 		../Paintpp/images/redo.png \
 		../Paintpp/images/line-width.png \
+		../Paintpp/images/cursor-finger.png \
 		../Paintpp/images/edit-alt.png \
 		../Paintpp/images/lapiz.png \
 		../Paintpp/images/folder.png \
 		../Paintpp/images/expandir.png \
 		../Paintpp/images/add-document.png \
 		../Paintpp/images/palette.png \
+		../Paintpp/images/graphic-tablet.png \
 		../Paintpp/images/acercarse.png \
 		../Paintpp/images/undo.png \
 		../Paintpp/images/search.png \
@@ -945,12 +947,14 @@ qrc_images.cpp: ../Paintpp/images.qrc \
 		../../../Qt/6.2.4/gcc_64/libexec/rcc \
 		../Paintpp/images/redo.png \
 		../Paintpp/images/line-width.png \
+		../Paintpp/images/cursor-finger.png \
 		../Paintpp/images/edit-alt.png \
 		../Paintpp/images/lapiz.png \
 		../Paintpp/images/folder.png \
 		../Paintpp/images/expandir.png \
 		../Paintpp/images/add-document.png \
 		../Paintpp/images/palette.png \
+		../Paintpp/images/graphic-tablet.png \
 		../Paintpp/images/acercarse.png \
 		../Paintpp/images/undo.png \
 		../Paintpp/images/search.png \
@@ -970,12 +974,14 @@ qrc_images.cpp: ../Paintpp/images.qrc \
 		../../../Qt/6.2.4/gcc_64/libexec/rcc \
 		../Paintpp/images/redo.png \
 		../Paintpp/images/line-width.png \
+		../Paintpp/images/cursor-finger.png \
 		../Paintpp/images/edit-alt.png \
 		../Paintpp/images/lapiz.png \
 		../Paintpp/images/folder.png \
 		../Paintpp/images/expandir.png \
 		../Paintpp/images/add-document.png \
 		../Paintpp/images/palette.png \
+		../Paintpp/images/graphic-tablet.png \
 		../Paintpp/images/acercarse.png \
 		../Paintpp/images/undo.png \
 		../Paintpp/images/search.png \
@@ -1492,9 +1498,22 @@ mainwindow.o: ../Paintpp/mainwindow.cpp ../../../Qt/6.2.4/gcc_64/include/QtGui/Q
 		../../../Qt/6.2.4/gcc_64/include/QtGui/qinputmethod.h \
 		../../../Qt/6.2.4/gcc_64/include/QtCore/qlocale.h \
 		../../../Qt/6.2.4/gcc_64/include/QtGui/qguiapplication_platform.h \
+		../../../Qt/6.2.4/gcc_64/include/QtWidgets/QComboBox \
+		../../../Qt/6.2.4/gcc_64/include/QtWidgets/qcombobox.h \
+		../../../Qt/6.2.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		../../../Qt/6.2.4/gcc_64/include/QtWidgets/qstyleoption.h \
+		../../../Qt/6.2.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		../../../Qt/6.2.4/gcc_64/include/QtGui/qvalidator.h \
+		../../../Qt/6.2.4/gcc_64/include/QtCore/qregularexpression.h \
+		../../../Qt/6.2.4/gcc_64/include/QtWidgets/qslider.h \
+		../../../Qt/6.2.4/gcc_64/include/QtWidgets/qabstractslider.h \
+		../../../Qt/6.2.4/gcc_64/include/QtWidgets/qstyle.h \
+		../../../Qt/6.2.4/gcc_64/include/QtWidgets/qtabbar.h \
+		../../../Qt/6.2.4/gcc_64/include/QtWidgets/qrubberband.h \
+		../../../Qt/6.2.4/gcc_64/include/QtWidgets/qframe.h \
+		../../../Qt/6.2.4/gcc_64/include/QtCore/qabstractitemmodel.h \
 		../../../Qt/6.2.4/gcc_64/include/QtWidgets/QLabel \
 		../../../Qt/6.2.4/gcc_64/include/QtWidgets/qlabel.h \
-		../../../Qt/6.2.4/gcc_64/include/QtWidgets/qframe.h \
 		../../../Qt/6.2.4/gcc_64/include/QtGui/qpicture.h \
 		../../../Qt/6.2.4/gcc_64/include/QtGui/qtextdocument.h \
 		../../../Qt/6.2.4/gcc_64/include/QtWidgets/QLineEdit \
@@ -1510,9 +1529,6 @@ mainwindow.o: ../Paintpp/mainwindow.cpp ../../../Qt/6.2.4/gcc_64/include/QtGui/Q
 		../../../Qt/6.2.4/gcc_64/include/QtWidgets/qabstractbutton.h \
 		../../../Qt/6.2.4/gcc_64/include/QtWidgets/QSpinBox \
 		../../../Qt/6.2.4/gcc_64/include/QtWidgets/qspinbox.h \
-		../../../Qt/6.2.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../Qt/6.2.4/gcc_64/include/QtGui/qvalidator.h \
-		../../../Qt/6.2.4/gcc_64/include/QtCore/qregularexpression.h \
 		../../../Qt/6.2.4/gcc_64/include/QtWidgets/QStatusBar \
 		../../../Qt/6.2.4/gcc_64/include/QtWidgets/qstatusbar.h \
 		../../../Qt/6.2.4/gcc_64/include/QtWidgets/QToolBar \

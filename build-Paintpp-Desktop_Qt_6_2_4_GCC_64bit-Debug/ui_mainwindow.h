@@ -55,6 +55,7 @@ public:
     QAction *actionNew_canvas;
     QAction *actionExperimental_1;
     QAction *actionExperimental_2;
+    QAction *actionFree_form_Selection;
     QWidget *centralwidget;
     QWidget *thicknessWidget;
     QSpinBox *thickness_spinBox;
@@ -159,7 +160,7 @@ public:
         actionEraser->setObjectName(QString::fromUtf8("actionEraser"));
         actionEraser->setCheckable(true);
         QIcon icon11;
-        icon11.addFile(QString::fromUtf8(":/images/lapiz.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon11.addFile(QString::fromUtf8(":/images/graphic-tablet.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionEraser->setIcon(icon11);
         actionSelect = new QAction(MainWindow);
         actionSelect->setObjectName(QString::fromUtf8("actionSelect"));
@@ -209,6 +210,12 @@ public:
         actionExperimental_1->setObjectName(QString::fromUtf8("actionExperimental_1"));
         actionExperimental_2 = new QAction(MainWindow);
         actionExperimental_2->setObjectName(QString::fromUtf8("actionExperimental_2"));
+        actionFree_form_Selection = new QAction(MainWindow);
+        actionFree_form_Selection->setObjectName(QString::fromUtf8("actionFree_form_Selection"));
+        actionFree_form_Selection->setCheckable(true);
+        QIcon icon18;
+        icon18.addFile(QString::fromUtf8(":/images/cursor-finger.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionFree_form_Selection->setIcon(icon18);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         centralwidget->setMouseTracking(false);
@@ -388,12 +395,13 @@ public:
         toolBar->addAction(actionEraser);
         toolBar->addAction(actionPen);
         toolBar->addAction(actionFill);
-        toolBar->addAction(actionColorPicker);
-        toolBar->addAction(actionSelect);
-        toolBar->addAction(actionmagicWand);
         toolBar->addAction(actionGeometry);
         toolBar->addSeparator();
+        toolBar->addAction(actionSelect);
+        toolBar->addAction(actionmagicWand);
+        toolBar->addSeparator();
         toolBar->addAction(actionColor_Palette);
+        toolBar->addAction(actionColorPicker);
         toolBar->addAction(actionThickness);
         toolBar->addSeparator();
         toolBar->addAction(actionZoomIn);
@@ -464,6 +472,7 @@ public:
         actionNew_canvas->setText(QCoreApplication::translate("MainWindow", "New canvas", nullptr));
         actionExperimental_1->setText(QCoreApplication::translate("MainWindow", "Experimental 1", nullptr));
         actionExperimental_2->setText(QCoreApplication::translate("MainWindow", "Experimental 2", nullptr));
+        actionFree_form_Selection->setText(QCoreApplication::translate("MainWindow", "Free-form Selection", nullptr));
         thickness_label->setText(QCoreApplication::translate("MainWindow", "Choose thickness:", nullptr));
         thickness_pushButton->setText(QCoreApplication::translate("MainWindow", "Okay", nullptr));
         path_label->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\">Write filepath:</p></body></html>", nullptr));

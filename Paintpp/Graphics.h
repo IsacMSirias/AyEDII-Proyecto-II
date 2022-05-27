@@ -4,7 +4,7 @@
 #include <iostream>
 #include <cmath>
 #include "rgbMatrix.h"
-#include "rgbMatrix.h"
+#include "Stack.h"
 
 
 class Graphics {

@@ -5,10 +5,10 @@ Stack::Stack(){
     top = -1;
 
     for (int i = 0; i < 5; i++) {
-        
-        array[i] = 0;
+
+        array[i]->createMatrix();
     }
-    
+
 }
 
 bool Stack::isEmpty(){
@@ -23,38 +23,38 @@ bool Stack::isEmpty(){
 
 bool Stack::isFull(){
 
-    if(top == 4){
+    if(top == 5){
         return true;
     }
     else{
-       return false; 
+       return false;
     }
 }
 
 
-void Stack::push(int value){
+void Stack::push(rgbMatrix value){
 
     if(isFull()){
-        std::cout<< "stack overflow"<<std::endl;
+        std::cout<< "Stack overflow"<<std::endl;
     }
     else{
-        top++; 
-        array[top] = value;
+        top++;
+        *array[top] = value;
     }
 
 }
 
-int Stack::pop(){
+rgbMatrix Stack::pop(){
 
     if(isEmpty()){
-        std::cout<< "stack overflow"<<std::endl;
-        return 0;
+        std::cout<< "Stack is empty"<<std::endl;
+        //return ;
     }
     else{
-        int popValue = array[top];
-        array[top] = 0;
+        rgbMatrix popValue = *array[top];
+        //array[top] = 0;
         top--;
-        return popValue; 
+        return popValue;
     }
 }
 
@@ -62,12 +62,12 @@ int Stack::counterValues(){
     return (top +1);
 }
 
-int Stack::peek(int pos){
+rgbMatrix Stack::peek(int pos){
     if(isEmpty()){
-        std::cout<< "stack overflow"<<std::endl;
-        return 0;
+        std::cout<< "Stack is empty"<<std::endl;
+        //return 0;
     }
     else{
-        return array[pos];
+        return *array[pos];
     }
 }

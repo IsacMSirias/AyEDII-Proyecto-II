@@ -5,6 +5,7 @@
 #include "Data Structure/rgbMatrix.cpp"
 #include "Graphic Elements/Graphics.h"
 #include "Graphic Elements/Graphics.cpp"
+#include "Data Structure/Stack.h"
 
 
 int main() {
@@ -15,6 +16,9 @@ int main() {
 
 	rgbMatrix *rgb = new rgbMatrix(w, h);
 	Graphics *graphics = new Graphics();
+
+	//Stack undo;
+	//undo.push(*rgb);
 
 	//Se crea una imagen y se exporta al disco
 

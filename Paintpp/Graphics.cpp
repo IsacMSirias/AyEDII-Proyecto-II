@@ -1,9 +1,8 @@
 #include "Graphics.h"
 
 
-
 void Graphics::draw_WithPencil(const rgbColor &rgbColor, int x, int y , int thickness, rgbMatrix matrix){
-    
+
     int maxThickness = thickness -1;
 
     for (int i = x - maxThickness; i <= x + maxThickness; i++){
@@ -96,15 +95,14 @@ void Graphics:: negativeFilter(rgbMatrix matrix){
 }
 
 void Graphics:: experimentalFilter1(rgbMatrix matrix){
-
     for (int x = 0; x < matrix.get_Height(); x++){
 
         for (int y = 0; y < matrix.get_Width(); y++){
 
             rgbColor tempRGB =  matrix.getColor(x,y);
-            float new_R = 111 - tempRGB.r;
-            float new_G = 222 + tempRGB.g;
-            float new_B = 111 - tempRGB.b;
+            float new_R = 0.34*tempRGB.r;
+            float new_G = 0.11*tempRGB.g;
+            float new_B = 0.90*tempRGB.b;
             matrix.setColor(rgbColor(new_R, new_G, new_B), x, y);
         }
 
@@ -116,18 +114,8 @@ void Graphics:: experimentalFilter1(rgbMatrix matrix){
 
 void Graphics:: experimentalFilter2(rgbMatrix matrix)
 {
-    for (int x = 0; x < matrix.get_Height(); x++){
-
-        for (int y = 0; y < matrix.get_Width(); y++){
-
-            rgbColor tempRGB =  matrix.getColor(x,y);
-            float new_R = 111* tempRGB.r;
-            float new_G = 222*tempRGB.g;
-            float new_B = 111*tempRGB.b;
-            matrix.setColor(rgbColor(new_R, new_G, new_B), x, y);
-        }
-
-    }
+    experimentalFilter1(matrix);
+    negativeFilter(matrix);
 
     std::cout<< "extra  Filter apply"<< std::endl;
 }

@@ -1,29 +1,32 @@
 #ifndef Stack_h
 #define Stack_h
 
-#include <iostream>
-#include <string>
+#include "rgbMatrix.h"
 
+// struct action {
+//     const char* actionName;
+//     int posX, posY, posX2, posY2;
+//     rgbColor color;
+//     int thickness;
+// };
 
 class Stack {
 
 private:
-    
+
+    int size;
     int top;
-    int array[5];
+    rgbMatrix** array;
 
 public:
 
-    Stack();
+    Stack(int size);
     bool isEmpty();
     bool isFull();
-    void push(int value);
-    int pop();    
+    void push(rgbMatrix value);
+    rgbMatrix pop();
     int counterValues();
-    int peek(int pos);
+    rgbMatrix peek(int pos);
 };
-
-
-
 
 #endif

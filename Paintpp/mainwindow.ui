@@ -514,12 +514,13 @@ border: 1px solid rgb(154, 153, 150);
    <addaction name="actionEraser"/>
    <addaction name="actionPen"/>
    <addaction name="actionFill"/>
-   <addaction name="actionColorPicker"/>
-   <addaction name="actionSelect"/>
-   <addaction name="actionmagicWand"/>
    <addaction name="actionGeometry"/>
    <addaction name="separator"/>
+   <addaction name="actionSelect"/>
+   <addaction name="actionmagicWand"/>
+   <addaction name="separator"/>
    <addaction name="actionColor_Palette"/>
+   <addaction name="actionColorPicker"/>
    <addaction name="actionThickness"/>
    <addaction name="separator"/>
    <addaction name="actionZoomIn"/>
@@ -673,7 +674,7 @@ border: 1px solid rgb(154, 153, 150);
    </property>
    <property name="icon">
     <iconset resource="images.qrc">
-     <normaloff>:/images/lapiz.png</normaloff>:/images/lapiz.png</iconset>
+     <normaloff>:/images/graphic-tablet.png</normaloff>:/images/graphic-tablet.png</iconset>
    </property>
    <property name="text">
     <string>Eraser</string>
@@ -789,6 +790,18 @@ border: 1px solid rgb(154, 153, 150);
   <action name="actionExperimental_2">
    <property name="text">
     <string>Experimental 2</string>
+   </property>
+  </action>
+  <action name="actionFree_form_Selection">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/cursor-finger.png</normaloff>:/images/cursor-finger.png</iconset>
+   </property>
+   <property name="text">
+    <string>Free-form Selection</string>
    </property>
   </action>
  </widget>

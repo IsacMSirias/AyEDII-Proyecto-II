@@ -1,5 +1,7 @@
 #include <QMouseEvent>
 #include <QColorDialog>
+#include <fstream>
+#include <vector>
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "BmpImage.h"
@@ -16,6 +18,8 @@ int scrollY = 0;
 int scrollX = 0;
 int posX1, posY1;
 Graphics paint;
+std::vector<BmpImage> undo;
+std::vector<BmpImage> redo;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -82,44 +86,60 @@ void MainWindow::on_actionExport_triggered()
 
 void MainWindow::on_actionUndo_triggered()
 {
-
+    if (undo.size() != 0) {
+        imgMatrix->CreateRgbArray();
+        redo.push_back(BmpImage("temp", imgMatrix->get_Width(), imgMatrix->get_Height(), imgMatrix->get_rgbArray(), imgMatrix->get_rgbArraySize()));
+        imgMatrix = new rgbMatrix(undo.back().getDataArray(), undo.back().get_Height(), undo.back().get_Width());
+        undo.pop_back();
+        update();
+    }
 }
 
 void MainWindow::on_actionRedo_triggered()
 {
-
+    if (redo.size() != 0) {
+        imgMatrix->CreateRgbArray();
+        undo.push_back(BmpImage("temp", imgMatrix->get_Width(), imgMatrix->get_Height(), imgMatrix->get_rgbArray(), imgMatrix->get_rgbArraySize()));
+        imgMatrix = new rgbMatrix(redo.back().getDataArray(), redo.back().get_Height(), redo.back().get_Width());
+        redo.pop_back();
+        update();
+    }
 }
 
 void MainWindow::mousePressEvent(QMouseEvent *event)
 {
     if (inBounds(calculateRelativePosX(event->position().x()), calculateRelativePosY(event->position().y()))) {
+        imgMatrix->CreateRgbArray();
+        undo.push_back(BmpImage("temp", imgMatrix->get_Width(), imgMatrix->get_Height(), imgMatrix->get_rgbArray(), imgMatrix->get_rgbArraySize()));
+
+        int posX = calculateRelativePosX(event->position().x());
+        int posY = calculateRelativePosY(event->position().y());
+
         if (ui->actionPencil->isChecked())
         {
-            paint.draw_WithPencil(*selectedColor, calculateRelativePosY(event->position().y()), calculateRelativePosX(event->position().x()), thickness, *imgMatrix);
+            paint.draw_WithPencil(*selectedColor, posY, posX, thickness, *imgMatrix);
         }
         else if (ui->actionEraser->isChecked())
         {
-            paint.draw_WithPencil(eraserColor, calculateRelativePosY(event->position().y()), calculateRelativePosX(event->position().x()), thickness, *imgMatrix);
+            paint.draw_WithPencil(eraserColor, posY, posX, thickness, *imgMatrix);
         }
         else if (ui->actionColorPicker->isChecked())
         {
-            rgbColor color = imgMatrix->getColor(calculateRelativePosY(event->position().y()), calculateRelativePosX(event->position().x()));
+            rgbColor color = imgMatrix->getColor(posY, posX);
             selectedColor = new rgbColor(color.r, color.g, color.b);
         }
         else if (ui->actionFill->isChecked())
         {
-            paint.paintFill(imgMatrix->getColor(calculateRelativePosY(event->position().y()), calculateRelativePosX(event->position().x())), *selectedColor
-                            , calculateRelativePosX(event->position().x()), calculateRelativePosY(event->position().y()), *imgMatrix);
+            paint.paintFill(imgMatrix->getColor(posY, posX), *selectedColor, posX, posY, *imgMatrix);
         }
         else if (ui->actionmagicWand->isChecked())
         {
-            paint.paintFill(imgMatrix->getColor(calculateRelativePosY(event->position().y()), calculateRelativePosX(event->position().x())), eraserColor
-                            , calculateRelativePosX(event->position().x()), calculateRelativePosY(event->position().y()), *imgMatrix);
+            paint.paintFill(imgMatrix->getColor(posY, posX), eraserColor, posX, posY, *imgMatrix);
         }
         else if (ui->actionPen->isChecked() || ui->actionGeometry->isChecked() || ui->actionSelect->isChecked())
         {
-            posY1 = calculateRelativePosY(event->position().y());
-            posX1 = calculateRelativePosX(event->position().x());
+            posY1 = posY;
+            posX1 = posX;
         }
         update();
     }
@@ -128,13 +148,16 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
 void MainWindow::mouseMoveEvent(QMouseEvent *event)
 {
     if (inBounds(calculateRelativePosX(event->position().x()), calculateRelativePosY(event->position().y()))) {
+        int posX = calculateRelativePosX(event->position().x());
+        int posY = calculateRelativePosY(event->position().y());
+
         if (ui->actionPencil->isChecked())
         {
-            paint.draw_WithPencil(*selectedColor, calculateRelativePosY(event->position().y()), calculateRelativePosX(event->position().x()), thickness, *imgMatrix);
+            paint.draw_WithPencil(*selectedColor, posY, posX, thickness, *imgMatrix);
         }
         else if (ui->actionEraser->isChecked())
         {
-            paint.draw_WithPencil(eraserColor, calculateRelativePosY(event->position().y()), calculateRelativePosX(event->position().x()), thickness, *imgMatrix);
+            paint.draw_WithPencil(eraserColor, posY, posX, thickness, *imgMatrix);
         }
         update();
     }
@@ -143,26 +166,31 @@ void MainWindow::mouseMoveEvent(QMouseEvent *event)
 void MainWindow::mouseReleaseEvent(QMouseEvent *event)
 {
     if (inBounds(calculateRelativePosX(event->position().x()), calculateRelativePosY(event->position().y()))) {
+        int posX = calculateRelativePosX(event->position().x());
+        int posY = calculateRelativePosY(event->position().y());
+
         if (ui->actionPen->isChecked())
         {
-            paint.draw_WithPen(*selectedColor, posY1, posX1, calculateRelativePosY(event->position().y()), calculateRelativePosX(event->position().x()), thickness, *imgMatrix);
+            paint.draw_WithPen(*selectedColor, posY1, posX1, posY, posX, thickness, *imgMatrix);
         }
         else if(ui->actionGeometry->isChecked())
         {
             if (ui->geometry_comboBox->currentText() == "Rectangle")
             {
-                paint.square(*selectedColor, posX1, posY1, calculateRelativePosX(event->position().x()), calculateRelativePosY(event->position().y()), thickness, *imgMatrix);
+                paint.square(*selectedColor, posX1, posY1, posX, posY, thickness, *imgMatrix);
             }
             else if (ui->geometry_comboBox->currentText() == "Triangle")
             {
-                paint.triangle(*selectedColor, posX1, posY1, calculateRelativePosX(event->position().x()), calculateRelativePosY(event->position().y()), thickness, *imgMatrix);
+                paint.triangle(*selectedColor, posX1, posY1, posX, posY, thickness, *imgMatrix);
             }
             else if (ui->geometry_comboBox->currentText() == "Circle")
             {
-                paint.circle(*selectedColor, posY1, posX1, calculateRelativePosY(event->position().y()), calculateRelativePosX(event->position().x()), thickness, *imgMatrix);
+                paint.circle(*selectedColor, posY1, posX1, posY, posX, thickness, *imgMatrix);
             }
-        } else if (ui->actionSelect->isChecked()) {
-            paint.squareFill(eraserColor, posX1, posY1, calculateRelativePosX(event->position().x()), calculateRelativePosY(event->position().y()), *imgMatrix);
+        }
+        else if (ui->actionSelect->isChecked())
+        {
+            paint.squareFill(eraserColor, posX1, posY1, posX, posY, *imgMatrix);
         }
         update();
     }
@@ -187,6 +215,8 @@ void MainWindow::on_actionZoomOut_triggered()
 
 void MainWindow::on_actionRotate_triggered()
 {
+    imgMatrix->CreateRgbArray();
+    undo.push_back(BmpImage("temp", imgMatrix->get_Width(), imgMatrix->get_Height(), imgMatrix->get_rgbArray(), imgMatrix->get_rgbArraySize()));
     imgMatrix->rotate90CW();
     update();
 }
@@ -194,6 +224,8 @@ void MainWindow::on_actionRotate_triggered()
 
 void MainWindow::on_actionGrayscale_triggered()
 {
+    imgMatrix->CreateRgbArray();
+    undo.push_back(BmpImage("temp", imgMatrix->get_Width(), imgMatrix->get_Height(), imgMatrix->get_rgbArray(), imgMatrix->get_rgbArraySize()));
     paint.grayFilter(*imgMatrix);
     update();
 }
@@ -201,6 +233,8 @@ void MainWindow::on_actionGrayscale_triggered()
 
 void MainWindow::on_actionNegative_triggered()
 {
+    imgMatrix->CreateRgbArray();
+    undo.push_back(BmpImage("temp", imgMatrix->get_Width(), imgMatrix->get_Height(), imgMatrix->get_rgbArray(), imgMatrix->get_rgbArraySize()));
     paint.negativeFilter(*imgMatrix);
     update();
 }
@@ -301,12 +335,18 @@ void MainWindow::on_actionGeometry_triggered(bool checked)
 
 void MainWindow::on_actionExperimental_1_triggered()
 {
+    imgMatrix->CreateRgbArray();
+    undo.push_back(BmpImage("temp", imgMatrix->get_Width(), imgMatrix->get_Height(), imgMatrix->get_rgbArray(), imgMatrix->get_rgbArraySize()));
     paint.experimentalFilter1(*imgMatrix);
+    update();
 }
 
 
 void MainWindow::on_actionExperimental_2_triggered()
 {
+    imgMatrix->CreateRgbArray();
+    undo.push_back(BmpImage("temp", imgMatrix->get_Width(), imgMatrix->get_Height(), imgMatrix->get_rgbArray(), imgMatrix->get_rgbArraySize()));
     paint.experimentalFilter2(*imgMatrix);
+    update();
 }
 

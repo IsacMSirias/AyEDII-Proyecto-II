@@ -21,5 +21,7 @@
         <file>images/line-width.png</file>
         <file>images/resources.png</file>
         <file>images/folder.png</file>
+        <file>images/cursor-finger.png</file>
+        <file>images/graphic-tablet.png</file>
     </qresource>
 </RCC>
