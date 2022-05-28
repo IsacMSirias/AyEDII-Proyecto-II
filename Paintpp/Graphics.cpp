@@ -1,6 +1,24 @@
+/**
+ * @file Graphics.cpp
+ * @author Isac Marin Sirias, Daniel Cob Beirute, Abraham Venegaz 
+ * @brief Esta clase se encarga de escribir en la matrix los cambios en pixeles. Además brinda métodos para: aumentar el grosor del lapiz, escrbir una línea recta entre dos puntos, rellenar una imagen con BFS, escribir figuras y aplicar filtros.
+ * @version 0.1
+ * @date 2022-05-27
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include "Graphics.h"
 
-
+/**
+ * @brief Escribe puntos de distinto grosor en la matriz.
+ * 
+ * @param rgbColor 
+ * @param x 
+ * @param y 
+ * @param thickness 
+ * @param matrix 
+ */
 void Graphics::draw_WithPencil(const rgbColor &rgbColor, int x, int y , int thickness, rgbMatrix matrix){
 
     int maxThickness = thickness -1;
@@ -14,8 +32,17 @@ void Graphics::draw_WithPencil(const rgbColor &rgbColor, int x, int y , int thic
         }   
     }
  }
-
-    
+/**
+ * @brief Escribe líneas rectas entre dos puntos.
+ * 
+ * @param rgbColor 
+ * @param initial_y 
+ * @param initial_x 
+ * @param final_y 
+ * @param final_x 
+ * @param thickness 
+ * @param matrix 
+ */
 void Graphics::draw_WithPen(const rgbColor &rgbColor, int initial_y, int initial_x, int final_y,
                                         int final_x, int thickness, rgbMatrix matrix){
 
@@ -108,7 +135,7 @@ void Graphics:: experimentalFilter1(rgbMatrix matrix){
 
     }
 
-    std::cout<< "extra  Filter apply"<< std::endl;
+    std::cout<< "extra Filter apply"<< std::endl;
 }
 
 
@@ -117,9 +144,18 @@ void Graphics:: experimentalFilter2(rgbMatrix matrix)
     experimentalFilter1(matrix);
     negativeFilter(matrix);
 
-    std::cout<< "extra  Filter apply"<< std::endl;
+    std::cout<< "extra Filter apply"<< std::endl;
 }
 
+/**
+ * @brief Utiliza el algoritmo BFS para rellenar toda una matriz hasta encontrar pixeles de distinto color.
+ * 
+ * @param colorPicked 
+ * @param selectedColor 
+ * @param x 
+ * @param y 
+ * @param matrix 
+ */
 void Graphics::paintFill(const rgbColor &colorPicked, const rgbColor &selectedColor, int x, int y, rgbMatrix matrix)
 {
     if (selectedColor.b == colorPicked.b && selectedColor.g == colorPicked.g && selectedColor.r == colorPicked.r)

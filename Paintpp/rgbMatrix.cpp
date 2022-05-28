@@ -145,7 +145,6 @@ unsigned char *rgbMatrix::get_rgbArray()
  * 
  */
 void rgbMatrix::whiteCanvas()
-
 {
     for (int x = 0; x < m_height; x++)
     {

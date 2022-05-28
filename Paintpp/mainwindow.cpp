@@ -1,3 +1,13 @@
+/**
+ * @file mainwindow.cpp
+ * @author Isac Marin Sirias, Daniel Cob Beirute, Abraham Venegaz 
+ * @brief La clase maneja todas las funcionalidades de la GUI, además maneja las funciones de undo y redo.
+ * @version 0.1
+ * @date 2022-05-27
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include <QMouseEvent>
 #include <QColorDialog>
 #include <fstream>
@@ -39,6 +49,11 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+/**
+ * @brief Pinta la matrix pixel por pixel para dar una imagen en la interfaz gráfica.
+ * 
+ * @param event 
+ */
 void MainWindow::paintEvent(QPaintEvent *event)
 {
     QPainter painter(this);
@@ -84,6 +99,10 @@ void MainWindow::on_actionExport_triggered()
     ui->filenameWidget->show();
 }
 
+/**
+ * @brief Reemplaza las matrices de cambios guardadas en el stack.
+ * 
+ */
 void MainWindow::on_actionUndo_triggered()
 {
     if (undo.size() != 0) {
@@ -95,6 +114,10 @@ void MainWindow::on_actionUndo_triggered()
     }
 }
 
+/**
+ * @brief Reemplaza las matrices de cambios guardadas en el stack.
+ * 
+ */
 void MainWindow::on_actionRedo_triggered()
 {
     if (redo.size() != 0) {
@@ -286,7 +309,10 @@ void MainWindow::on_actionThickness_triggered()
     ui->thicknessWidget->show();
 }
 
-
+/**
+ * @brief Permite al usuario abrir una imagen almacenada en el disco duro a través de su ruta.
+ * 
+ */
 void MainWindow::on_path_pushButton_clicked()
 {
     BmpImage readImg(ui->path_lineEdit->text().toStdString().c_str());
@@ -295,7 +321,10 @@ void MainWindow::on_path_pushButton_clicked()
     update();
 }
 
-
+/**
+ * @brief Permite al usuario guardar el canvas como una imagen BMP, con el nombre que desee.
+ * 
+ */
 void MainWindow::on_filename_pushButton_clicked()
 {
     imgMatrix->CreateRgbArray();
@@ -309,7 +338,10 @@ void MainWindow::on_actionNew_canvas_triggered()
     ui->canvasSizeWidget->show();
 }
 
-
+/**
+ * @brief Cambia el tamaño del Canvas
+ * 
+ */
 void MainWindow::on_canvasSize_pushButton_clicked()
 {
     imgMatrix = new rgbMatrix(ui->height_spinBox->value(), ui->width_spinBox->value());
